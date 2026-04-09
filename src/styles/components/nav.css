@@ -1,0 +1,198 @@
+/* ── Navigation (.nav) ─────────────────────────────────────────────────── */
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease,
+              border-color 0.35s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.nav.scrolled {
+  background: var(--surface-nav-scrolled);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: var(--ink-08);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.5rem;
+  gap: 2rem;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.nav__logo-mark {
+  height: 38px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.nav__wordmark {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  transition: color 0.25s ease;
+}
+
+.nav.scrolled .nav__wordmark {
+  color: var(--color-text);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+  margin-left: auto;
+}
+
+.nav__link {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--on-dark-70);
+  transition: color 0.15s ease;
+}
+.nav__link:hover { color: var(--color-white); }
+
+.nav.scrolled .nav__link {
+  color: var(--color-text-dim);
+}
+.nav.scrolled .nav__link:hover {
+  color: var(--color-text);
+}
+
+.nav__cta {
+  padding: 0.5em 1.3em;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: var(--white-12);
+  color: var(--color-white);
+  border: 1.5px solid var(--white-25);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+.nav__cta:hover {
+  background: var(--white-22);
+  border-color: var(--white-45);
+  transform: translateY(-1px);
+}
+.nav__cta:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+}
+.nav.scrolled .nav__cta {
+  background: var(--color-violet);
+  color: var(--color-white);
+  border-color: var(--color-violet);
+}
+.nav.scrolled .nav__cta:hover {
+  background: color-mix(in srgb, var(--color-violet) 85%, var(--color-white) 15%);
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* ── Language toggle ── */
+.nav__lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+  border-radius: var(--radius-pill);
+  transition: background 0.15s;
+}
+.nav__lang-toggle:hover { background: var(--white-08); }
+
+.nav__lang {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--on-dark-40);
+  transition: color 0.15s;
+}
+.nav__lang--active { color: var(--on-dark-90); }
+
+.nav__lang-sep {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--on-dark-22);
+}
+
+.nav.scrolled .nav__lang-toggle:hover { background: var(--ink-07); }
+.nav.scrolled .nav__lang { color: var(--color-text-dim); }
+.nav.scrolled .nav__lang--active { color: var(--color-text); }
+.nav.scrolled .nav__lang-sep { color: var(--ink-15); }
+
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav__hamburger-line {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--on-dark-70);
+  transition: background 0.15s;
+  border-radius: 1px;
+}
+.nav.scrolled .nav__hamburger-line {
+  background: var(--color-text-dim);
+}
+
+/* Mobile nav overlay */
+@media (max-width: 768px) {
+  .nav__links       { display: none; }
+  .nav__cta         { display: none; }
+  .nav__hamburger   { display: flex; }
+
+  .nav__links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    background: var(--surface-nav-mobile);
+    backdrop-filter: blur(16px);
+    z-index: 99;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  .nav__links.open .nav__link {
+    font-size: var(--text-3xl);
+    color: var(--color-text-light);
+    font-weight: 700;
+    font-family: var(--font-display);
+  }
+}
+
+@media (min-width: 769px) {
+  .nav__hamburger { display: none; }
+}

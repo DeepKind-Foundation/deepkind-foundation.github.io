@@ -1,0 +1,114 @@
+/* ── Get Involved section (.get-involved) ───────────────────────────────── */
+
+.get-involved {
+  background: var(--color-bg-dark);
+  padding-block: var(--section-y);
+}
+
+.gi__header {
+  max-width: 640px;
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+.gi__title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--on-dark-90);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.gi__intro {
+  font-size: var(--text-lg);
+  color: var(--on-dark-50);
+  line-height: 1.75;
+}
+
+/* Three equal cards */
+.gi__options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.gi-card {
+  background: var(--white-06);
+  border: 1px solid var(--white-08);
+  border-radius: var(--radius-lg);
+  padding: var(--card-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s var(--ease-expo);
+}
+
+.gi-card:hover {
+  background: var(--white-12);
+  border-color: var(--white-15);
+  transform: translateY(-3px);
+}
+
+.gi-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gi-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--on-dark-90);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.gi-card__desc {
+  font-size: var(--text-base);
+  color: var(--on-dark-50);
+  line-height: 1.7;
+}
+
+.gi-card__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6em 1.4em;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  background: var(--white-12);
+  color: var(--on-dark-90);
+  border: 1px solid var(--white-15);
+  align-self: flex-start;
+  transition: background 0.2s ease, transform 0.2s var(--ease-expo);
+}
+
+.gi-card__cta:hover {
+  background: var(--white-22);
+  transform: translateY(-1px);
+}
+
+/* Accent top border + subtle gradient per theme */
+.gi-card--volunteer {
+  border-top: 3px solid var(--color-violet);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--color-violet) 12%, transparent) 0%, var(--white-06) 50%);
+}
+.gi-card--donate {
+  border-top: 3px solid var(--color-mint);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--color-mint) 12%, transparent) 0%, var(--white-06) 50%);
+}
+.gi-card--partner {
+  border-top: 3px solid var(--color-coral);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--color-coral) 12%, transparent) 0%, var(--white-06) 50%);
+}
+
+@media (max-width: 1024px) {
+  .gi__options { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .gi__options { grid-template-columns: 1fr; }
+}

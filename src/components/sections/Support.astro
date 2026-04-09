@@ -1,0 +1,27 @@
+---
+import content from '@data/content';
+const { intro, options } = content.getInvolved;
+---
+
+<section id="join" aria-label="Zaangażuj się" class="get-involved">
+  <div class="wrap">
+
+    <header class="gi__header reveal">
+      <h2 class="gi__title" data-i18n="getInvolved.heading">Zaangażuj się</h2>
+      <p class="gi__intro" data-i18n="getInvolved.intro">{intro}</p>
+    </header>
+
+    <div class="gi__options">
+      {options.map((option, i) => (
+        <div class={`gi-card gi-card--${option.theme} reveal`} data-reveal-delay={String(Math.min(i, 4))}>
+          <div class="gi-card__body">
+            <h3 class="gi-card__title" data-i18n={`getInvolved.options.${i}.title`}>{option.title}</h3>
+            <p class="gi-card__desc" data-i18n={`getInvolved.options.${i}.description`}>{option.description}</p>
+          </div>
+          <a href={option.url} class="gi-card__cta" data-i18n={`getInvolved.options.${i}.cta`}>{option.cta}</a>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

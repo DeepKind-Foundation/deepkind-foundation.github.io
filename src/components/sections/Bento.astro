@@ -1,0 +1,41 @@
+---
+import content from '@data/content';
+const { header, items } = content.areas;
+
+const accentMap: Record<string, string> = {
+  blue:     'var(--color-violet)',
+  sage:     'var(--color-mint)',
+  peach:    'var(--color-coral)',
+  lavender: 'var(--color-rose)',
+  gold:     'var(--color-gold)',
+};
+---
+
+<section class="areas" id="areas" aria-label="Obszary działań">
+  <div class="wrap">
+
+    <header class="areas__header reveal">
+      <h2 class="areas__title" data-i18n="areas.header">{header}</h2>
+    </header>
+
+    <div class="areas__grid">
+      {items.map((area, i) => (
+        <article
+          class="area-card reveal"
+          style={`--area-accent: ${accentMap[area.accent] ?? accentMap.blue}`}
+          data-reveal-delay={String(Math.min(i, 3))}
+        >
+          <div class="area-card__dot" aria-hidden="true"></div>
+          <h3 class="area-card__title" data-i18n={`areas.items.${i}.title`}>{area.title}</h3>
+          <p class="area-card__desc" data-i18n={`areas.items.${i}.description`}>{area.description}</p>
+          <ul class="area-card__tags" aria-label="Tagi">
+            {area.tags.map((tag, j) => (
+              <li class="area-card__tag" data-i18n={`areas.items.${i}.tags.${j}`}>{tag}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

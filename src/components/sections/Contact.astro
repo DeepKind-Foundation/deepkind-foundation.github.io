@@ -1,0 +1,65 @@
+---
+import content from '@data/content';
+const { heading, description } = content.contact;
+const { newsletter } = content.footer;
+const email = content.footer.connect.find(l => l.url.startsWith('mailto:'));
+const socials = content.footer.connect.filter(l => !l.url.startsWith('mailto:'));
+---
+
+<section class="contact" id="contact" aria-label="Kontakt">
+  <div class="wrap">
+    <div class="contact__inner reveal">
+
+      <!-- Left: contact info -->
+      <div class="contact__left">
+        <h2 class="contact__heading" data-i18n="contact.heading">{heading}</h2>
+        <p class="contact__desc" data-i18n="contact.description">{description}</p>
+
+        <div class="contact__links">
+          {email && (
+            <a href={email.url} class="contact__email">
+              {email.url.replace('mailto:', '')}
+            </a>
+          )}
+          <div class="contact__socials">
+            {socials.map(s => (
+              <a
+                href={s.url}
+                class="contact__social"
+                target={s.url.startsWith('http') ? '_blank' : undefined}
+                rel={s.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >{s.name}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: newsletter signup -->
+      <div class="contact__newsletter-box">
+        <p class="contact__newsletter-tag">Newsletter</p>
+        <p class="contact__newsletter-heading" data-i18n="footer.newsletter.heading">{newsletter.heading}</p>
+        <p class="contact__newsletter-desc" data-i18n="footer.newsletter.description">{newsletter.description}</p>
+        <form class="contact__newsletter-form" novalidate>
+          <div class="contact__newsletter-row">
+            <input
+              type="email"
+              class="contact__newsletter-input"
+              data-i18n-placeholder="footer.newsletter.placeholder"
+              placeholder={newsletter.placeholder}
+              aria-label={newsletter.placeholder}
+              required
+            />
+            <button type="submit" class="contact__newsletter-btn" data-i18n="footer.newsletter.cta">
+              {newsletter.cta}
+            </button>
+          </div>
+          <label class="contact__newsletter-consent">
+            <input type="checkbox" class="contact__newsletter-check" required />
+            <span>Oświadczam, że zapoznałam/-em się z <a href="/regulamin-newslettera" class="contact__newsletter-link">Regulaminem newslettera</a> Fundacji DeepKind i akceptuję jego treść.</span>
+          </label>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

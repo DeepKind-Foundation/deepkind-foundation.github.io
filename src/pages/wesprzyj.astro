@@ -1,0 +1,342 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Wesprzyj finansowo — DeepKind Foundation"
+  description="Wspierając Fundację DeepKind, pomagasz realizować bezpłatne programy dla dzieci, młodzieży i kobiet w technologiach."
+>
+
+  <section class="form-hero">
+    <div class="form-wrap">
+      <p class="form-protocol">DEEPKIND // DAROWIZNY</p>
+      <h1 class="form-title">Wesprzyj finansowo</h1>
+      <p class="form-subtitle">Twoje wsparcie ma realny wpływ na nasze programy i inicjatywy.</p>
+    </div>
+  </section>
+
+  <section class="form-body">
+    <div class="form-wrap">
+      <div class="form-layout">
+
+        <!-- Left: info -->
+        <div class="form-intro">
+          <h2 class="form-intro__heading">Na co przekazujesz darowiznę?</h2>
+          <p class="form-intro__text">Dzięki Twojemu wsparciu możemy realizować bezpłatne programy i inicjatywy dla osób, które ich potrzebują najbardziej.</p>
+          <ul class="form-intro__list">
+            <li>Programy edukacyjne dla dzieci i młodzieży</li>
+            <li>Wsparcie kobiet wchodzących w świat technologii</li>
+            <li>Inicjatywy na rzecz dobrostanu i zdrowia psychicznego</li>
+            <li>Projekty łączące pokolenia i środowiska</li>
+            <li>Rozwój narzędzi i zasobów dostępnych dla wszystkich</li>
+          </ul>
+
+          <div class="form-intro__legal">
+            <p class="form-intro__legal-title">Dane do przelewu</p>
+            <dl class="form-intro__dl">
+              <dt>Nazwa odbiorcy</dt>
+              <dd>Fundacja DeepKind</dd>
+              <dt>Bank</dt>
+              <dd>mBank</dd>
+              <dt>Numer konta</dt>
+              <dd class="form-intro__iban">46 1140 2004 0000 3002 8497 5410</dd>
+              <dt>Tytuł przelewu</dt>
+              <dd>Darowizna na cele statutowe</dd>
+            </dl>
+            <p class="form-intro__note">Darowizny na rzecz fundacji mogą być odliczone od podatku. Szczegóły znajdziesz w <a href="/regulamin-darowizn" class="vf-link">Regulaminie darowizn</a>.</p>
+          </div>
+        </div>
+
+        <!-- Right: contact form -->
+        <div class="form-card">
+          <p class="form-card__lead">Wolisz, żebyśmy się skontaktowali?</p>
+          <p class="form-card__sub">Zostaw nam swoje dane, a odezwiemy się z informacją o tym, jak możesz wesprzeć nasze działania.</p>
+
+          <form class="volunteer-form" name="donate" method="POST" novalidate>
+
+            <div class="vf-group">
+              <label class="vf-label" for="vf-name">Imię i nazwisko</label>
+              <input class="vf-input" type="text" id="vf-name" name="name" placeholder="Anna Kowalska" />
+            </div>
+
+            <div class="vf-group">
+              <label class="vf-label" for="vf-email">Adres e-mail *</label>
+              <input class="vf-input" type="email" id="vf-email" name="email" required placeholder="anna@example.com" />
+            </div>
+
+            <div class="vf-group">
+              <label class="vf-label" for="vf-message">Wiadomość (opcjonalnie)</label>
+              <textarea class="vf-input vf-textarea" id="vf-message" name="message" placeholder="Chętnie odpowiemy na pytania o to, jak działamy i na co przeznaczamy środki." rows="3"></textarea>
+            </div>
+
+            <div class="vf-group vf-group--check">
+              <label class="vf-check-label">
+                <input class="vf-check" type="checkbox" name="consent" required />
+                <span>Wyrażam zgodę na przetwarzanie moich danych osobowych przez Fundację DeepKind w celu obsługi zgłoszenia, zgodnie z <a href="/polityka-prywatnosci" class="vf-link">Polityką Prywatności</a>. *</span>
+              </label>
+            </div>
+
+            <button type="submit" class="vf-submit">Napisz do nas →</button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .form-wrap {
+    max-width: 1100px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
+  }
+
+  .form-hero {
+    background: var(--color-bg-dark);
+    padding-block: clamp(5rem, 8vw, 8rem);
+    border-bottom: 1px solid var(--white-08);
+  }
+
+  .form-protocol {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--on-dark-30);
+    margin-bottom: 1rem;
+  }
+
+  .form-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-coral));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .form-subtitle {
+    font-size: var(--text-lg);
+    color: var(--on-dark-55);
+    margin-top: 0.75rem;
+  }
+
+  .form-body {
+    background: var(--color-bg-base);
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+
+  .form-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .form-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-intro__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+  }
+
+  .form-intro__text {
+    font-size: var(--text-base);
+    color: var(--color-text-dim);
+    line-height: 1.75;
+  }
+
+  .form-intro__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-left: 1.1rem;
+  }
+
+  .form-intro__list li {
+    font-size: var(--text-sm);
+    color: var(--color-text-dim);
+    line-height: 1.6;
+  }
+
+  .form-intro__legal {
+    background: var(--color-white);
+    border: 1px solid var(--ink-10);
+    border-left: 3px solid var(--color-gold);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-intro__legal-title {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .form-intro__dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35rem 1.25rem;
+  }
+
+  .form-intro__dl dt {
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+    font-family: var(--font-mono);
+    white-space: nowrap;
+  }
+
+  .form-intro__dl dd {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .form-intro__iban {
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  .form-intro__note {
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+    line-height: 1.6;
+  }
+
+  .form-card {
+    background: var(--color-white);
+    border: 1px solid var(--ink-10);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-card__lead {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+  }
+
+  .form-card__sub {
+    font-size: var(--text-sm);
+    color: var(--color-text-dim);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .volunteer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .vf-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .vf-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+
+  .vf-input {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--ink-12);
+    border-radius: var(--radius-sm);
+    padding: 0.65em 0.9em;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    width: 100%;
+  }
+
+  .vf-input:focus {
+    border-color: var(--color-gold);
+    background: var(--color-white);
+  }
+
+  .vf-input::placeholder { color: var(--color-text-dim); opacity: 0.6; }
+
+  .vf-textarea { resize: vertical; min-height: 6rem; }
+
+  .vf-group--check { flex-direction: row; align-items: flex-start; gap: 0; }
+
+  .vf-check-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+    line-height: 1.6;
+    cursor: pointer;
+  }
+
+  .vf-check {
+    flex-shrink: 0;
+    margin-top: 0.15em;
+    accent-color: var(--color-gold);
+    width: 16px;
+    height: 16px;
+  }
+
+  .vf-link {
+    color: var(--color-violet);
+    text-decoration: underline;
+  }
+
+  .vf-submit {
+    margin-top: 0.5rem;
+    background: var(--color-gold);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 0.8em 2em;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+    align-self: flex-start;
+  }
+
+  .vf-submit:hover {
+    background: color-mix(in srgb, var(--color-gold) 85%, black 15%);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px) {
+    .form-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-card { padding: 1.5rem; }
+  }
+</style>

@@ -1,0 +1,180 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({ params: { slug: post.slug }, props: { post, allPosts: posts } }));
+}
+
+const { post, allPosts } = Astro.props;
+const { Content } = await post.render();
+
+const otherPosts = allPosts
+  .filter(p => p.slug !== post.slug)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const categoryColors: Record<string, string> = {
+  'AI i etyka':     'var(--color-violet)',
+  'Kobiety w tech': 'var(--color-rose)',
+  'Dobrostan':      'var(--color-mint)',
+  'Przywództwo':    'var(--color-gold)',
+  'Różnorodność':   'var(--color-coral)',
+};
+
+function tagColor(cat: string): string {
+  return categoryColors[cat] ?? 'var(--color-violet)';
+}
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('pl-PL', {
+    day: 'numeric', month: 'long', year: 'numeric',
+  });
+}
+---
+
+<BaseLayout title={`${post.data.title} — DeepKind Blog`} description={post.data.excerpt}>
+
+  <article>
+
+    <header class="blog-post-hero">
+      <div class="blog-wrap">
+        <div class="blog-post-hero__meta">
+          <a href="/blog" class="blog-post-hero__back">← Blog</a>
+          <span class="blog-post-hero__sep">/</span>
+          <span class="blog-post-hero__cat">{post.data.category}</span>
+        </div>
+        <h1 class="blog-post-hero__title">{post.data.title}</h1>
+        <p class="blog-post-hero__byline">{formatDate(post.data.date)}</p>
+      </div>
+    </header>
+
+    <div class="blog-post-body">
+      <div class="blog-wrap blog-wrap--with-sidebar">
+
+        <div class="blog-prose">
+          <Content />
+          <div class="blog-post-footer">
+            <a href="/blog" class="blog-post-footer__back">← Wróć do bloga</a>
+          </div>
+        </div>
+
+        {otherPosts.length > 0 && (
+          <aside class="blog-sidebar">
+            <p class="blog-sidebar__heading">Inne artykuły</p>
+            <ul class="blog-sidebar__list">
+              {otherPosts.map(p => (
+                <li class="blog-sidebar__item">
+                  <a href={`/blog/${p.slug}`} class="blog-sidebar__link">
+                    <span
+                      class="blog-sidebar__cat"
+                      style={`--tag-color: ${tagColor(p.data.category)}`}
+                    >#{p.data.category}</span>
+                    <span class="blog-sidebar__title">{p.data.title}</span>
+                    <span class="blog-sidebar__date">{formatDate(p.data.date)}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+
+      </div>
+    </div>
+
+  </article>
+
+</BaseLayout>
+
+<style>
+  .blog-wrap--with-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* ── Footer ── */
+  .blog-post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--ink-10);
+  }
+  .blog-post-footer__back {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+    transition: color 0.15s;
+  }
+  .blog-post-footer__back:hover { color: var(--color-violet); }
+
+  /* ── Sidebar ── */
+  .blog-sidebar {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .blog-sidebar__heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+    margin-bottom: 1.25rem;
+  }
+
+  .blog-sidebar__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+  }
+
+  .blog-sidebar__item {
+    border-top: 1px solid var(--ink-08);
+  }
+  .blog-sidebar__item:last-child { border-bottom: 1px solid var(--ink-08); }
+
+  .blog-sidebar__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.9rem 0;
+    transition: opacity 0.15s;
+  }
+  .blog-sidebar__link:hover { opacity: 0.75; }
+
+  .blog-sidebar__cat {
+    --tag-color: var(--color-violet);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+    color: var(--tag-color);
+  }
+
+  .blog-sidebar__title {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .blog-sidebar__date {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--color-text-dim);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 900px) {
+    .blog-wrap--with-sidebar {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .blog-sidebar { position: static; }
+  }
+</style>

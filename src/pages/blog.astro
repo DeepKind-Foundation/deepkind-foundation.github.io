@@ -1,0 +1,92 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const categoryColors: Record<string, string> = {
+  'Wszystkie':      'var(--color-violet)',
+  'AI i etyka':     'var(--color-violet)',
+  'Kobiety w tech': 'var(--color-rose)',
+  'Dobrostan':      'var(--color-mint)',
+  'Przywództwo':    'var(--color-gold)',
+  'Różnorodność':   'var(--color-coral)',
+};
+
+const categories = Object.keys(categoryColors);
+
+function tagColor(cat: string): string {
+  return categoryColors[cat] ?? 'var(--color-violet)';
+}
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('pl-PL', {
+    day: 'numeric', month: 'long', year: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title="Blog — DeepKind Foundation"
+  description="Refleksje, analizy i opowieści o technologii, empatii i odpowiedzialnym budowaniu przyszłości."
+>
+
+  <section class="blog-hero">
+    <div class="blog-wrap">
+      <p class="blog-eyebrow">DEEPKIND // BLOG</p>
+      <h1 class="blog-hero__title">Myśli, które<br/>warto przemyśleć</h1>
+      <p class="blog-hero__sub">Refleksje o technologii, empatii i odpowiedzialnym budowaniu przyszłości.</p>
+    </div>
+  </section>
+
+  <section class="blog-body">
+    <div class="blog-wrap">
+
+      <nav class="blog-filters" aria-label="Kategorie">
+        {categories.map((cat, i) => (
+          <button
+            class={`blog-filter${i === 0 ? ' blog-filter--active' : ''}`}
+            style={`--tag-color: ${tagColor(cat)}`}
+          >#{cat}</button>
+        ))}
+      </nav>
+
+      {posts.length > 0 ? (
+        <ol class="blog-grid">
+          {posts.map(post => (
+            <li class="blog-card">
+              <a href={`/blog/${post.slug}`} class="blog-card__link">
+                <span
+                  class="blog-card__category"
+                  style={`--tag-color: ${tagColor(post.data.category)}`}
+                >#{post.data.category}</span>
+                <h2 class="blog-card__title">{post.data.title}</h2>
+                <p class="blog-card__excerpt">{post.data.excerpt}</p>
+                <span class="blog-card__date">{formatDate(post.data.date)}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <div class="blog-empty">
+          <div class="blog-empty__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="15" y1="19" x2="33" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="15" y1="25" x2="28" y2="25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="15" y1="31" x2="23" y2="31" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h2 class="blog-empty__heading">Wpisy wkrótce</h2>
+          <p class="blog-empty__text">Pracujemy nad pierwszymi artykułami. Zapisz się do newslettera, żeby dostać powiadomienie jako pierwsza/-y.</p>
+          <a href="/#contact" class="blog-empty__cta">Zapisz się do newslettera →</a>
+        </div>
+      )}
+
+    </div>
+  </section>
+
+</BaseLayout>

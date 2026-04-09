@@ -1,0 +1,29 @@
+{
+  "name": "deepkind-fresher",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "cms": "tinacms dev -c \"astro dev\"",
+    "build": "tinacms build && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "^5.0.0",
+    "@fontsource-variable/inter-tight": "^5.0.0",
+    "@fontsource/geist-mono": "^5.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@tinacms/cli": "^2.1.9",
+    "astro": "^5.0.0",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.0.0",
+    "tinacms": "^3.6.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["better-sqlite3", "core-js", "esbuild", "protobufjs", "sharp"]
+  }
+}

@@ -1,0 +1,26 @@
+---
+import content from '@data/content';
+const { items } = content.faq;
+---
+
+<section class="faq" id="faq" aria-label="Pytania i odpowiedzi">
+  <div class="wrap">
+
+    <header class="faq__header reveal">
+      <h2 class="faq__title" data-i18n="faq.heading">Często zadawane pytania</h2>
+    </header>
+
+    <div class="faq__list">
+      {items.map((item, i) => (
+        <details class="faq-item reveal" data-reveal-delay={String(Math.min(i, 4))}>
+          <summary class="faq-item__question">
+            <span data-i18n={`faq.items.${i}.question`}>{item.question}</span>
+            <span class="faq-item__icon" aria-hidden="true"></span>
+          </summary>
+          <p class="faq-item__answer" data-i18n={`faq.items.${i}.answer`}>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>

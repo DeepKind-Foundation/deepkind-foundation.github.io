@@ -1,0 +1,110 @@
+/* ── Areas / Bento section (.areas, .area-card) ────────────────────────── */
+
+.areas {
+  background: var(--color-bg-base);
+  padding-block: var(--section-y);
+}
+
+.areas__header {
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+.areas__title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* Grid: 3 columns on desktop, 2 on tablet, 1 on mobile */
+.areas__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* ── Area card ── */
+.area-card {
+  background: var(--color-white);
+  border: 1px solid var(--ink-08);
+  border-top: 3px solid var(--area-accent, var(--color-violet));
+  border-radius: var(--radius-lg);
+  padding: var(--card-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, transform 0.25s var(--ease-expo);
+}
+
+.area-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--area-accent) 5%, transparent) 0%, transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.area-card:hover {
+  box-shadow: 0 8px 32px var(--ink-10);
+  transform: translateY(-3px);
+}
+
+.area-card:hover::before {
+  opacity: 1;
+}
+
+.area-card__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--area-accent, var(--color-violet));
+  flex-shrink: 0;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--area-accent) 50%, transparent);
+}
+
+.area-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.area-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+}
+
+.area-card__tag {
+  font-size: var(--text-xs);
+  color: var(--area-accent, var(--color-violet));
+  background: color-mix(in srgb, var(--area-accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--area-accent) 20%, transparent);
+  border-radius: var(--radius-pill);
+  padding: 0.2em 0.65em;
+  white-space: nowrap;
+}
+
+.area-card__desc {
+  font-size: var(--text-base);
+  color: var(--color-text-dim);
+  line-height: 1.7;
+  flex: 1;
+}
+
+@media (max-width: 1024px) {
+  .areas__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .areas__grid { grid-template-columns: 1fr; }
+}

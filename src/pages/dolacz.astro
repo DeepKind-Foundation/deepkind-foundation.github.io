@@ -1,0 +1,289 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Dołącz do nas — DeepKind Foundation"
+  description="Zostań wolontariuszem lub wolontariuszką Fundacji DeepKind. Podziel się swoją wiedzą i czasem."
+>
+
+  <section class="form-hero">
+    <div class="form-wrap">
+      <p class="form-protocol">DEEPKIND // WOLONTARIAT</p>
+      <h1 class="form-title">Dołącz do nas</h1>
+      <p class="form-subtitle">Jako wolontariusz/-ka. Razem robimy więcej.</p>
+    </div>
+  </section>
+
+  <section class="form-body">
+    <div class="form-wrap">
+      <div class="form-layout">
+
+        <!-- Left: intro -->
+        <div class="form-intro">
+          <h2 class="form-intro__heading">Kogo szukamy?</h2>
+          <p class="form-intro__text">Szukamy aktywistek/-ów, mentorów/-ek, ekspertek/-ów oraz pasjonatów/-ek technologii, humanistyki i przyrody — osób, które chcą działać z sensem i mają coś do zaoferowania innym.</p>
+          <ul class="form-intro__list">
+            <li>Ekspertki i eksperci z obszaru technologii, AI, edukacji</li>
+            <li>Mentorki i mentorzy dla młodych dorosłych i kobiet w tech</li>
+            <li>Aktywiści i aktywistki społeczne</li>
+            <li>Osoby z doświadczeniem w komunikacji, PR, projektowaniu</li>
+            <li>Pasjonaci/-ki przyrody, mindfulness i dobrostanu</li>
+          </ul>
+          <p class="form-intro__note">Nie musisz spełniać wszystkich kryteriów — napisz nam o sobie, a my znajdziemy dla Ciebie miejsce.</p>
+        </div>
+
+        <!-- Right: form -->
+        <div class="form-card">
+          <form class="volunteer-form" name="volunteer" method="POST" novalidate>
+
+            <div class="vf-group">
+              <label class="vf-label" for="vf-name">Imię i nazwisko *</label>
+              <input class="vf-input" type="text" id="vf-name" name="name" required placeholder="Anna Kowalska" />
+            </div>
+
+            <div class="vf-group">
+              <label class="vf-label" for="vf-email">Adres e-mail *</label>
+              <input class="vf-input" type="email" id="vf-email" name="email" required placeholder="anna@example.com" />
+            </div>
+
+            <div class="vf-group">
+              <label class="vf-label" for="vf-area">Obszar zaangażowania *</label>
+              <select class="vf-input vf-select" id="vf-area" name="area" required>
+                <option value="" disabled selected>Wybierz obszar</option>
+                <option value="tech">Technologia i odpowiedzialność</option>
+                <option value="women">Sprawczość kobiet</option>
+                <option value="diversity">Różnorodność i dialog</option>
+                <option value="wellbeing">Dobrostan i przywództwo</option>
+                <option value="entrepreneurship">Przedsiębiorczość z misją</option>
+                <option value="other">Inny / nie wiem jeszcze</option>
+              </select>
+            </div>
+
+            <div class="vf-group">
+              <label class="vf-label" for="vf-skills">Co możesz wnieść? *</label>
+              <textarea class="vf-input vf-textarea" id="vf-skills" name="skills" required placeholder="Opowiedz o swojej wiedzy, doświadczeniu lub pomyśle na działanie..." rows="4"></textarea>
+            </div>
+
+            <div class="vf-group">
+              <label class="vf-label" for="vf-availability">Dyspozycyjność</label>
+              <input class="vf-input" type="text" id="vf-availability" name="availability" placeholder="np. kilka godzin miesięcznie, weekendy..." />
+            </div>
+
+            <div class="vf-group vf-group--check">
+              <label class="vf-check-label">
+                <input class="vf-check" type="checkbox" name="consent" required />
+                <span>Wyrażam zgodę na przetwarzanie moich danych osobowych przez Fundację DeepKind w celu rozpatrzenia zgłoszenia wolontariackiego, zgodnie z <a href="/polityka-prywatnosci" class="vf-link">Polityką Prywatności</a>. *</span>
+              </label>
+            </div>
+
+            <button type="submit" class="vf-submit">Wyślij zgłoszenie →</button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .form-wrap {
+    max-width: 1100px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
+  }
+
+  /* ── Hero ── */
+  .form-hero {
+    background: var(--color-bg-dark);
+    padding-block: clamp(5rem, 8vw, 8rem);
+    border-bottom: 1px solid var(--white-08);
+  }
+
+  .form-protocol {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--on-dark-30);
+    margin-bottom: 1rem;
+  }
+
+  .form-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    background: linear-gradient(135deg, var(--color-violet), var(--color-rose));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .form-subtitle {
+    font-size: var(--text-lg);
+    color: var(--on-dark-55);
+    margin-top: 0.75rem;
+  }
+
+  /* ── Body ── */
+  .form-body {
+    background: var(--color-bg-base);
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+
+  .form-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* ── Intro ── */
+  .form-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-intro__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+  }
+
+  .form-intro__text {
+    font-size: var(--text-base);
+    color: var(--color-text-dim);
+    line-height: 1.75;
+  }
+
+  .form-intro__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-left: 1.1rem;
+  }
+
+  .form-intro__list li {
+    font-size: var(--text-sm);
+    color: var(--color-text-dim);
+    line-height: 1.6;
+  }
+
+  .form-intro__note {
+    font-size: var(--text-sm);
+    color: var(--color-text-dim);
+    font-style: italic;
+    border-left: 3px solid var(--color-violet);
+    padding-left: 1rem;
+  }
+
+  /* ── Form card ── */
+  .form-card {
+    background: var(--color-white);
+    border: 1px solid var(--ink-10);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+  }
+
+  .volunteer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .vf-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .vf-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+
+  .vf-input {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--ink-12);
+    border-radius: var(--radius-sm);
+    padding: 0.65em 0.9em;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    width: 100%;
+  }
+
+  .vf-input:focus {
+    border-color: var(--color-violet);
+    background: var(--color-white);
+  }
+
+  .vf-input::placeholder { color: var(--color-text-dim); opacity: 0.6; }
+
+  .vf-select { cursor: pointer; }
+  .vf-textarea { resize: vertical; min-height: 7rem; }
+
+  .vf-group--check { flex-direction: row; align-items: flex-start; gap: 0; }
+
+  .vf-check-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: var(--text-xs);
+    color: var(--color-text-dim);
+    line-height: 1.6;
+    cursor: pointer;
+  }
+
+  .vf-check {
+    flex-shrink: 0;
+    margin-top: 0.15em;
+    accent-color: var(--color-violet);
+    width: 16px;
+    height: 16px;
+  }
+
+  .vf-link {
+    color: var(--color-violet);
+    text-decoration: underline;
+  }
+
+  .vf-submit {
+    margin-top: 0.5rem;
+    background: var(--color-violet);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 0.8em 2em;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+    align-self: flex-start;
+  }
+
+  .vf-submit:hover {
+    background: color-mix(in srgb, var(--color-violet) 85%, black 15%);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px) {
+    .form-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-card { padding: 1.5rem; }
+  }
+</style>

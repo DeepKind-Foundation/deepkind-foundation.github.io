@@ -1,0 +1,33 @@
+<!-- Cookie consent dialog — shown only when no choice is stored in localStorage -->
+<div
+  class="cookie-dialog"
+  id="cookie-banner"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-label="Zgoda na pliki cookies"
+>
+  <div class="cookie-dialog__icon" aria-hidden="true">🍪</div>
+  <p class="cookie-dialog__title" data-i18n="cookieBanner.title">Pliki cookies</p>
+  <p class="cookie-dialog__text">
+    <span data-i18n="cookieBanner.text">Używamy plików cookies, aby zapewnić najlepsze doświadczenie na naszej stronie. Więcej w naszej&nbsp;</span><a
+      class="cookie-dialog__link"
+      href="/polityka-cookies"
+      data-i18n="cookieBanner.policyLink"
+    >Polityce cookies</a>.
+  </p>
+  <div class="cookie-dialog__actions">
+    <button
+      id="cookie-accept-all"
+      class="cookie-btn cookie-btn--primary"
+      data-i18n="cookieBanner.acceptAll"
+    >Akceptuj wszystkie</button>
+    <button
+      id="cookie-necessary"
+      class="cookie-btn cookie-btn--secondary"
+      data-i18n="cookieBanner.necessary"
+    >Tylko niezbędne</button>
+  </div>
+</div>
+
+<script src="@scripts/cookies.ts"></script>

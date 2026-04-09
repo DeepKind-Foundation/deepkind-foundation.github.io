@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.astro/
+package-lock.json
+public/admin/
+
+# development scripts
+dev/
+CLAUDE.md
+AGENTS.md
+TODO.md
+public/llms.txt
+hooks/
+commands/
+settings.json
+
+# Astro generated cache
+.astro/

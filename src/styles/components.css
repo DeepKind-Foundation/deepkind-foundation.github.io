@@ -1,0 +1,16 @@
+/**
+ * Component styles index.
+ * Each file is scoped to a single component/section.
+ * Edit the relevant file — do NOT add rules here directly.
+ */
+@import './components/nav.css';
+@import './components/hero.css';
+@import './components/areas.css';
+@import './components/about.css';
+@import './components/projects.css';
+@import './components/support.css';
+@import './components/faq.css';
+@import './components/contact.css';
+@import './components/footer.css';
+@import './components/cookie-banner.css';
+@import './components/blog.css';

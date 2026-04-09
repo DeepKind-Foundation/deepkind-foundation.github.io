@@ -1,0 +1,73 @@
+<svg class="hero__svg" viewBox="0 0 460 530" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+  <!-- ── Five interlocking circles — diagonal chain composition ── -->
+
+  <!-- C1: upper-right -->
+  <circle cx="368" cy="112" r="82"
+    stroke="#E6ECF8" stroke-width="1" stroke-opacity="0.22" fill="none"/>
+
+  <!-- C2: upper-left-center, largest -->
+  <circle cx="192" cy="158" r="118"
+    stroke="#E6ECF8" stroke-width="1" stroke-opacity="0.22" fill="none"/>
+
+  <!-- C3: middle-right -->
+  <circle cx="328" cy="278" r="108"
+    stroke="#E6ECF8" stroke-width="1" stroke-opacity="0.20" fill="none"/>
+
+  <!-- C4: lower-left -->
+  <circle cx="148" cy="348" r="94"
+    stroke="#E6ECF8" stroke-width="1" stroke-opacity="0.20" fill="none"/>
+
+  <!-- C5: lower-center -->
+  <circle cx="284" cy="432" r="80"
+    stroke="#E6ECF8" stroke-width="1" stroke-opacity="0.18" fill="none"/>
+
+
+  <!-- ── Accent dots at intersection / node points ── -->
+
+  <!-- C1 ∩ C2 — upper -->
+  <circle cx="290" cy="50"  r="5.5" fill="#3D62ED"/>
+
+  <!-- C1 ∩ C2 — lower -->
+  <circle cx="285" cy="192" r="5"   fill="#B87CAE"/>
+
+  <!-- C1 — far-right node -->
+  <circle cx="449" cy="120" r="4"   fill="#E87A5B"/>
+
+  <!-- C2 ∩ C3 — upper -->
+  <circle cx="270" cy="166" r="6"   fill="#4BAF82"/>
+
+  <!-- C2 ∩ C3 — lower -->
+  <circle cx="248" cy="292" r="5"   fill="#D49640"/>
+
+  <!-- C2 ∩ C4 — mid-left -->
+  <circle cx="162" cy="258" r="5.5" fill="#E87A5B"/>
+
+  <!-- C2 — far-left node -->
+  <circle cx="75"  cy="158" r="4"   fill="#B87CAE"/>
+
+  <!-- C3 ∩ C4 — crossing point -->
+  <circle cx="232" cy="308" r="5.5" fill="#3D62ED"/>
+
+  <!-- C3 — far-right node -->
+  <circle cx="434" cy="288" r="4"   fill="#4BAF82"/>
+
+  <!-- C4 ∩ C5 — crossing point -->
+  <circle cx="214" cy="400" r="6"   fill="#D49640"/>
+
+  <!-- C4 — bottom node -->
+  <circle cx="148" cy="440" r="4"   fill="#E87A5B"/>
+
+  <!-- C5 — far-left node -->
+  <circle cx="206" cy="440" r="4.5" fill="#B87CAE"/>
+
+  <!-- C5 — far-right node -->
+  <circle cx="362" cy="430" r="4"   fill="#3D62ED"/>
+
+  <!-- C2 — top node -->
+  <circle cx="192" cy="40"  r="4.5" fill="#4BAF82"/>
+
+  <!-- accent dot replacing the dash -->
+  <circle cx="275" cy="312" r="5" fill="#3D62ED"/>
+
+</svg>

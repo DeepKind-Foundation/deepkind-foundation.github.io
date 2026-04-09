@@ -1,0 +1,101 @@
+fragment SiteContentParts on SiteContent {
+  __typename
+  navigation {
+    __typename
+    links {
+      __typename
+      name
+      url
+    }
+    cta {
+      __typename
+      label
+      href
+    }
+  }
+  hero {
+    __typename
+    protocol
+    titlePrefix
+    titleHighlight
+    titleSuffix
+    description
+    cta
+    secondaryCta {
+      __typename
+      label
+      href
+    }
+    stats {
+      __typename
+      value
+      label
+    }
+  }
+  bento {
+    __typename
+    header
+    protocol
+    areas {
+      __typename
+      id
+      tag
+      title
+      description
+      variant
+      accent
+    }
+  }
+  about {
+    __typename
+    header
+    protocol
+    status
+    title
+    paragraphs
+  }
+  projects {
+    __typename
+    header
+    protocol
+    items {
+      __typename
+      title
+      category
+      description
+      image
+      cta
+      url
+      accent
+    }
+  }
+  support {
+    __typename
+    header
+    subtext
+    options {
+      __typename
+      title
+      description
+      cta
+      url
+      theme
+    }
+  }
+  footer {
+    __typename
+    description
+    copyright
+    location
+    legal {
+      __typename
+      name
+      url
+    }
+    connect {
+      __typename
+      name
+      url
+    }
+  }
+}

@@ -1,0 +1,47 @@
+---
+import content from '@data/content';
+import heroSvg from '@assets/svg/hero-illustration.svg?raw';
+const { title, subtitle, cta, secondaryCta } = content.hero;
+
+const splitIdx = title.indexOf('. ');
+const line1 = splitIdx !== -1 ? title.slice(0, splitIdx + 1) : title;
+const line2 = splitIdx !== -1 ? title.slice(splitIdx + 2) : '';
+---
+
+<section class="hero" id="home" aria-label="Hero">
+
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__glow hero__glow--1"></div>
+    <div class="hero__glow hero__glow--2"></div>
+    <div class="hero__glow hero__glow--3"></div>
+    <div class="hero__glow hero__glow--4"></div>
+  </div>
+
+  <div class="wrap hero__wrap">
+
+    <div class="hero__content animate-fade-up">
+
+      <h1 class="hero__title">
+        <span class="hero__line hero__line--1" data-i18n="hero.line1">{line1}</span>
+        {line2 && <span class="hero__line hero__line--2" data-i18n="hero.line2">{line2}</span>}
+      </h1>
+
+      <p class="hero__subtitle" data-i18n="hero.subtitle">{subtitle}</p>
+
+      <nav class="hero__ctas" aria-label="Główne akcje">
+        <a href="#projects" class="hero__btn hero__btn--primary" data-i18n="hero.cta">{cta}</a>
+        <a href={secondaryCta.href} class="hero__btn hero__btn--secondary" data-i18n="hero.secondaryCta.label">{secondaryCta.label}</a>
+      </nav>
+
+    </div>
+
+    <div class="hero__illustration" aria-hidden="true">
+      <Fragment set:html={heroSvg} />
+    </div>
+
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span class="hero__scroll-line"></span>
+    </div>
+
+  </div>
+</section>

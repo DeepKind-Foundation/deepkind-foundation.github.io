@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <style>
+      .dk-plum { fill: var(--dk-primary, #581C87); }
+      .dk-plum-light { fill: var(--dk-primary-light, #7E22CE); }
+      .dk-teal { fill: var(--dk-secondary, #2DD4BF); }
+      .dk-teal-dark { fill: var(--dk-secondary-dark, #0D9488); }
+      
+      .dk-glyph { shape-rendering: geometricPrecision; }
+    </style>
+  </defs>
+
+  <g id="glyph-d" class="dk-glyph">
+    <rect x="15" y="20" width="10" height="60" class="dk-plum" />
+    <path id="d-upper-facet" class="dk-plum-light" opacity="0.85" d="M 25 20 L 48 40 L 48 50 L 25 50 Z" />
+    <path id="d-lower-facet" class="dk-plum" d="M 25 80 L 48 60 L 48 50 L 25 50 Z" />
+  </g>
+
+  <g id="glyph-k" class="dk-glyph">
+    <rect x="55" y="20" width="10" height="60" class="dk-teal-dark" />
+    <path id="k-upper-arm" class="dk-teal" d="M 65 42 L 85 20 L 85 35 L 65 55 Z" />
+    <path id="k-lower-arm" class="dk-teal" d="M 65 58 L 85 80 L 85 65 L 65 45 Z" />
+  </g>
+
+  <circle id="core-bridge" cx="51.5" cy="50" r="3" class="dk-teal" />
+</svg>

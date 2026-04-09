@@ -1,0 +1,65 @@
+---
+import content from '@data/content';
+const { header, items } = content.projects;
+
+const accentMap: Record<string, string> = {
+  blue:     'var(--color-violet)',
+  sage:     'var(--color-mint)',
+  peach:    'var(--color-coral)',
+  lavender: 'var(--color-rose)',
+  gold:     'var(--color-gold)',
+};
+---
+
+<section class="projects" id="projects" aria-label="Projekty">
+  <div class="wrap">
+
+    <header class="projects__header reveal">
+      <h2 class="projects__title" data-i18n="projects.header">{header}</h2>
+    </header>
+
+    <ol class="projects__list">
+      {items.map((item, i) => (
+        <li
+          class="project-row reveal"
+          style={`--row-accent: ${accentMap[item.accent] ?? accentMap.blue}`}
+        >
+          <a
+            href={item.url}
+            class="project-row__inner"
+            target={item.url.startsWith('http') ? '_blank' : undefined}
+            rel={item.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+
+            <span class="project-row__index" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+
+            <div class="project-row__thumb-wrap">
+              <img
+                src={item.image}
+                alt={item.title}
+                class="project-row__thumb"
+                loading="lazy"
+                width="96"
+                height="96"
+              />
+            </div>
+
+            <div class="project-row__content">
+              <span class="project-row__subtitle" data-i18n={`projects.items.${i}.subtitle`}>{item.subtitle}</span>
+              <h3 class="project-row__title">{item.title}</h3>
+              <p class="project-row__desc" data-i18n={`projects.items.${i}.description`}>{item.description}</p>
+            </div>
+
+            <span class="project-row__more" data-i18n={`projects.items.${i}.cta`}>
+              {item.cta}
+            </span>
+
+          </a>
+        </li>
+      ))}
+    </ol>
+
+  </div>
+</section>

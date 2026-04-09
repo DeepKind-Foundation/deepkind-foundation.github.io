@@ -1,0 +1,29 @@
+---
+import content from '@data/content';
+import aboutSvg from '@assets/svg/about-shape.svg?raw';
+const { title, paragraphs, quote } = content.about;
+---
+
+<section class="about" id="about" aria-label="O nas">
+  <div class="wrap">
+    <div class="about__layout">
+
+      <div class="about__text reveal">
+        <h2 class="about__headline" data-i18n="about.title">{title}</h2>
+        <div class="about__body">
+          {paragraphs.map((p, i) => <p data-i18n={`about.paragraphs.${i}`}>{p}</p>)}
+        </div>
+      </div>
+
+      <div class="about__visual reveal reveal-delay-2" aria-hidden="true">
+        <div class="about__shape">
+          <Fragment set:html={aboutSvg} />
+        </div>
+        <div class="about__quote">
+          <p data-i18n="about.quote">{quote}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

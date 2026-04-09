@@ -1,0 +1,49 @@
+<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="about-bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-violet)" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="var(--color-violet)" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="about-spiral" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="var(--color-violet)"/>
+      <stop offset="55%"  stop-color="var(--color-rose)"/>
+      <stop offset="100%" stop-color="var(--color-mint)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Soft background glow -->
+  <circle cx="200" cy="200" r="180" fill="url(#about-bg)"/>
+
+  <!-- Fibonacci spiral — approximated with arcs, stroke gradient via path -->
+  <!-- Square 1: 1×1, bottom-right quadrant of center -->
+  <path d="M 200 200 A 13 13 0 0 1 213 187" stroke="url(#about-spiral)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Square 2: 1×1, bottom-left -->
+  <path d="M 213 187 A 13 13 0 0 1 200 174" stroke="url(#about-spiral)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Square 3: 2×2 -->
+  <path d="M 200 174 A 26 26 0 0 1 174 200" stroke="url(#about-spiral)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Square 4: 3×3 -->
+  <path d="M 174 200 A 39 39 0 0 1 213 239" stroke="url(#about-spiral)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Square 5: 5×5 -->
+  <path d="M 213 239 A 65 65 0 0 1 278 174" stroke="url(#about-spiral)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Square 6: 8×8 -->
+  <path d="M 278 174 A 104 104 0 0 1 174 70"  stroke="url(#about-spiral)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Square 7: 13×13 -->
+  <path d="M 174 70  A 169 169 0 0 1 5   239" stroke="url(#about-spiral)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Square 8: 21×21 -->
+  <path d="M 5   239 A 273 273 0 0 1 278 512" stroke="url(#about-spiral)" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Golden ratio grid lines (faint) -->
+  <line x1="213" y1="70"  x2="213" y2="239" stroke="var(--ink-08)" stroke-width="0.75"/>
+  <line x1="174" y1="70"  x2="174" y2="239" stroke="var(--ink-08)" stroke-width="0.75"/>
+  <line x1="5"   y1="174" x2="278" y2="174" stroke="var(--ink-08)" stroke-width="0.75"/>
+  <line x1="5"   y1="239" x2="278" y2="239" stroke="var(--ink-08)" stroke-width="0.75"/>
+
+  <!-- Accent dots at spiral pivot points -->
+  <circle cx="200" cy="200" r="3"   fill="var(--color-violet)" opacity="0.9"/>
+  <circle cx="213" cy="187" r="2.5" fill="var(--color-violet)" opacity="0.7"/>
+  <circle cx="200" cy="174" r="2.5" fill="var(--color-violet)" opacity="0.6"/>
+  <circle cx="174" cy="200" r="3"   fill="var(--color-rose)"   opacity="0.7"/>
+  <circle cx="213" cy="239" r="3.5" fill="var(--color-rose)"   opacity="0.6"/>
+  <circle cx="278" cy="174" r="4"   fill="var(--color-mint)"   opacity="0.6"/>
+  <circle cx="174" cy="70"  r="4.5" fill="var(--color-mint)"   opacity="0.5"/>
+</svg>

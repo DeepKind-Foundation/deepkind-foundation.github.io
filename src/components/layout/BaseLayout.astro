@@ -1,0 +1,87 @@
+---
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import SkipLink from '@ui/SkipLink.astro';
+import '@styles/global.css';
+import '@styles/components.css';
+import content from '@data/content';
+import PaletteWidget from '@dev/PaletteWidget.astro';
+import AccessibilityWidget from '@ui/AccessibilityWidget.astro';
+import CookieBanner from '@ui/CookieBanner.astro';
+import contentEn from '@data/content.en.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'DeepKind Foundation — Życzliwość to Energia',
+  description = 'Tworzymy inicjatywy, które łączą ludzi, technologię i troskę. DeepKind — Merging Humanity with Technology.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://deepkind.org');
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:locale"      content="pl_PL" />
+    <meta property="og:image"       content={new URL('/img/hero-bg.webp', canonicalURL).href} />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={new URL('/img/hero-bg.webp', canonicalURL).href} />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "DeepKind Foundation",
+      "alternateName": "DeepKind",
+      "url": "https://deepkind.org",
+      "logo": "https://deepkind.org/assets/logo.svg",
+      "description": content.footer.description,
+      "email": content.footer.connect.find(l => l.url.startsWith('mailto:'))?.url.replace('mailto:', '') || '',
+      "inLanguage": "pl",
+      "areaServed": "PL",
+      "sameAs": content.footer.connect.filter(l => !l.url.startsWith('mailto:') && l.url !== '#').map(l => l.url)
+    })} />
+
+    <!-- Theme color (matches dark nav / hero) -->
+    <meta name="theme-color" content="#0C0E1A" />
+
+    <!-- i18n: English content for client-side language toggle -->
+    <script type="application/json" id="i18n-en" set:html={JSON.stringify(contentEn)}></script>
+
+    <!-- Favicon (inline SVG) -->
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <SkipLink />
+    <Nav />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <AccessibilityWidget />
+    <CookieBanner />
+  </body>
+
+  <script src="@scripts/reveal.ts"></script>
+  <script src="@scripts/i18n.ts"></script>
+  {import.meta.env.DEV && <PaletteWidget />}
+</html>

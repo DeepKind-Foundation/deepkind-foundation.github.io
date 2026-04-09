@@ -1,0 +1,22 @@
+services:
+  dev:
+    build:
+      context: .
+      target: deps
+    volumes:
+      - .:/app
+      - /app/node_modules   # keep the container's node_modules, don't overwrite with host's
+    ports:
+      - "4321:4321"
+    command: pnpm astro dev --host
+
+  cms:
+    build:
+      context: .
+      target: deps
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "4321:4321"
+    command: pnpm cms
