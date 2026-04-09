@@ -1,0 +1,603 @@
+---
+/**
+ * PaletteWidget — dev-only floating panel for live colour token editing.
+ * Only rendered when import.meta.env.DEV is true (never ships to production).
+ *
+ * Changing any token:
+ *  - Instantly updates the CSS custom property on <html>
+ *  - Recomputes the derived rgba scales (--on-dark-*, --ink-*, --white-*)
+ *    that are currently hardcoded in global.css :root
+ * Export button copies a ready-to-paste @theme + :root block to clipboard.
+ */
+
+const GROUPS = [
+  {
+    label: 'BACKGROUNDS',
+    tokens: [
+      { name: '--color-bg-base',  label: 'bg-base',  value: '#FEFCF8' },
+      { name: '--color-bg-alt',   label: 'bg-alt',   value: '#F4F1FF' },
+      { name: '--color-bg-dark',  label: 'bg-dark',  value: '#1F1430' },
+      { name: '--color-bg-card',  label: 'bg-card',  value: '#281840' },
+    ],
+  },
+  {
+    label: 'ACCENTS',
+    tokens: [
+      { name: '--color-violet', label: 'violet', value: '#7C5CFC' },
+      { name: '--color-mint',   label: 'mint',   value: '#0EC99A' },
+      { name: '--color-coral',  label: 'coral',  value: '#FF5F57' },
+      { name: '--color-gold',   label: 'gold',   value: '#FFC847' },
+      { name: '--color-rose',   label: 'rose',   value: '#FF6F9C' },
+    ],
+  },
+  {
+    label: 'TEXT',
+    tokens: [
+      { name: '--color-text',       label: 'text',       value: '#1A1038', note: '→ ink scale'     },
+      { name: '--color-text-dim',   label: 'text-dim',   value: '#7A7099'                          },
+      { name: '--color-text-light', label: 'text-light', value: '#EDE8FF', note: '→ on-dark scale' },
+      { name: '--color-white',      label: 'white',      value: '#FFFFFF', note: '→ white scale'   },
+    ],
+  },
+];
+---
+
+<div id="pw-root">
+  <button id="pw-toggle" title="Toggle palette editor" aria-expanded="false">
+    ◈ PALETTE
+  </button>
+
+  <aside id="pw-panel" aria-hidden="true">
+    <header class="pw-header">
+      <span class="pw-title">PALETTE EDITOR</span>
+      <button id="pw-close" title="Close">✕</button>
+    </header>
+
+    <div class="pw-body">
+      {GROUPS.map(group => (
+        <section class="pw-group">
+          <p class="pw-group-label">{group.label}</p>
+          {group.tokens.map(token => (
+            <div class="pw-row" data-token={token.name}>
+              <span class="pw-swatch" style={`background:${token.value}`}></span>
+              <span class="pw-name">
+                {token.label}
+                {token.note && <span class="pw-note">{token.note}</span>}
+              </span>
+              <div class="pw-inputs">
+                <input
+                  class="pw-hex"
+                  type="text"
+                  value={token.value}
+                  maxlength={7}
+                  spellcheck={false}
+                  data-token={token.name}
+                  aria-label={`${token.label} hex value`}
+                />
+                <input
+                  class="pw-picker"
+                  type="color"
+                  value={token.value}
+                  data-token={token.name}
+                  aria-label={`${token.label} colour picker`}
+                  title={token.name}
+                />
+              </div>
+            </div>
+          ))}
+        </section>
+      ))}
+    </div>
+
+    <footer class="pw-footer">
+      <button id="pw-reset">RESET</button>
+      <button id="pw-save">SAVE</button>
+      <button id="pw-export">EXPORT CSS</button>
+    </footer>
+  </aside>
+</div>
+
+<style>
+  /* ── Shell ──────────────────────────────────────────────────── */
+  #pw-root {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    font-family: "Geist Mono", ui-monospace, monospace;
+  }
+
+  /* ── Toggle pill ────────────────────────────────────────────── */
+  #pw-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.5em 1em;
+    background: #0C0E1A;
+    color: rgba(237,232,255,0.7);
+    border: 1px solid rgba(237,232,255,0.15);
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  #pw-toggle:hover,
+  #pw-toggle[aria-expanded="true"] {
+    background: #7C5CFC;
+    color: #fff;
+    border-color: #7C5CFC;
+  }
+
+  /* ── Panel ──────────────────────────────────────────────────── */
+  #pw-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 296px;
+    background: #0C0E1A;
+    border-left: 1px solid rgba(237,232,255,0.1);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+    overflow: hidden;
+  }
+  #pw-panel.open {
+    transform: translateX(0);
+  }
+
+  /* ── Header ─────────────────────────────────────────────────── */
+  .pw-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.1rem;
+    border-bottom: 1px solid rgba(237,232,255,0.08);
+    flex-shrink: 0;
+  }
+  .pw-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    color: rgba(237,232,255,0.4);
+  }
+  #pw-close {
+    background: none;
+    border: none;
+    color: rgba(237,232,255,0.4);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    line-height: 1;
+    transition: color 0.15s, background 0.15s;
+  }
+  #pw-close:hover {
+    color: #fff;
+    background: rgba(237,232,255,0.08);
+  }
+
+  /* ── Scrollable body ────────────────────────────────────────── */
+  .pw-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(237,232,255,0.1) transparent;
+  }
+
+  /* ── Groups ─────────────────────────────────────────────────── */
+  .pw-group {
+    padding: 0.75rem 1.1rem 0.5rem;
+  }
+  .pw-group + .pw-group {
+    border-top: 1px solid rgba(237,232,255,0.06);
+  }
+  .pw-group-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    color: rgba(237,232,255,0.25);
+    margin-bottom: 0.6rem;
+  }
+
+  /* ── Rows ───────────────────────────────────────────────────── */
+  .pw-row {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.3rem 0;
+  }
+
+  .pw-swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(237,232,255,0.12);
+    flex-shrink: 0;
+    transition: background 0.1s;
+  }
+
+  .pw-name {
+    flex: 1;
+    font-size: 0.7rem;
+    color: rgba(237,232,255,0.65);
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+    min-width: 0;
+  }
+  .pw-note {
+    font-size: 0.58rem;
+    color: rgba(237,232,255,0.28);
+    letter-spacing: 0;
+  }
+
+  .pw-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  .pw-hex {
+    width: 5.5rem;
+    background: rgba(237,232,255,0.05);
+    border: 1px solid rgba(237,232,255,0.1);
+    border-radius: 4px;
+    color: rgba(237,232,255,0.8);
+    font-family: inherit;
+    font-size: 0.7rem;
+    padding: 0.25em 0.4em;
+    text-transform: uppercase;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .pw-hex:focus {
+    outline: none;
+    border-color: rgba(124,92,252,0.6);
+    background: rgba(237,232,255,0.08);
+  }
+  .pw-hex.invalid {
+    border-color: rgba(255,95,87,0.7);
+    color: rgba(255,95,87,0.9);
+  }
+
+  /* Colour picker — hide OS chrome, show just the swatch square */
+  .pw-picker {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 1px solid rgba(237,232,255,0.15);
+    border-radius: 4px;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    flex-shrink: 0;
+  }
+  .pw-picker::-webkit-color-swatch-wrapper { padding: 0; border-radius: 3px; }
+  .pw-picker::-webkit-color-swatch         { border: none; border-radius: 3px; }
+  .pw-picker::-moz-color-swatch            { border: none; border-radius: 3px; }
+
+  /* ── Footer ─────────────────────────────────────────────────── */
+  .pw-footer {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.85rem 1.1rem;
+    border-top: 1px solid rgba(237,232,255,0.08);
+    flex-shrink: 0;
+  }
+  .pw-footer button {
+    flex: 1;
+    padding: 0.5em 0;
+    font-family: inherit;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid rgba(237,232,255,0.15);
+    background: rgba(237,232,255,0.04);
+    color: rgba(237,232,255,0.55);
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .pw-footer button:hover {
+    background: rgba(237,232,255,0.1);
+    color: rgba(237,232,255,0.9);
+    border-color: rgba(237,232,255,0.3);
+  }
+  #pw-save:hover {
+    background: rgba(14,201,154,0.2);
+    color: #0EC99A;
+    border-color: rgba(14,201,154,0.5);
+  }
+  #pw-save.saving {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  #pw-save.saved {
+    background: rgba(14,201,154,0.2);
+    color: #0EC99A;
+    border-color: rgba(14,201,154,0.5);
+  }
+  #pw-save.error {
+    background: rgba(255,95,87,0.2);
+    color: #FF5F57;
+    border-color: rgba(255,95,87,0.5);
+  }
+  #pw-export:hover {
+    background: rgba(124,92,252,0.25);
+    color: #fff;
+    border-color: rgba(124,92,252,0.6);
+  }
+  #pw-export.copied {
+    background: rgba(14,201,154,0.2);
+    color: #0EC99A;
+    border-color: rgba(14,201,154,0.5);
+  }
+</style>
+
+<script>
+  // ── Constants ─────────────────────────────────────────────────
+
+  const DEFAULTS: Record<string, string> = {
+    '--color-bg-base':    '#FEFCF8',
+    '--color-bg-alt':     '#F4F1FF',
+    '--color-bg-dark':    '#1F1430',
+    '--color-bg-card':    '#281840',
+    '--color-violet':     '#7C5CFC',
+    '--color-mint':       '#0EC99A',
+    '--color-coral':      '#FF5F57',
+    '--color-gold':       '#FFC847',
+    '--color-rose':       '#FF6F9C',
+    '--color-text':       '#1A1038',
+    '--color-text-dim':   '#7A7099',
+    '--color-text-light': '#EDE8FF',
+    '--color-white':      '#FFFFFF',
+  };
+
+  // Alpha suffixes (suffix / 100 = opacity)
+  const ON_DARK_ALPHAS = [90,75,70,60,55,50,40,35,30,25,22,20,18,15,12,10,8,7];
+  const INK_ALPHAS     = [7,8,10,12,14,15,25];
+  const WHITE_ALPHAS   = [4,6,8,12,14,15,22,25,30,45,70,72,90];
+
+  // ── Helpers ───────────────────────────────────────────────────
+
+  function hexToRgb(hex: string): [number, number, number] {
+    const n = parseInt(hex.replace('#', ''), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+
+  function rgbToHex(r: number, g: number, b: number): string {
+    return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('').toUpperCase();
+  }
+
+  function isValidHex(s: string): boolean {
+    return /^#[0-9a-fA-F]{6}$/.test(s);
+  }
+
+  function updateScale(prefix: string, hex: string, alphas: number[]): void {
+    const [r,g,b] = hexToRgb(hex);
+    const root = document.documentElement;
+    for (const a of alphas) {
+      const key = `--${prefix}-${String(a).padStart(2,'0')}`;
+      root.style.setProperty(key, `rgba(${r},${g},${b},${(a/100).toFixed(2)})`);
+    }
+  }
+
+  // ── Core: apply a token value ─────────────────────────────────
+
+  function applyToken(name: string, hex: string): void {
+    if (!isValidHex(hex)) return;
+    document.documentElement.style.setProperty(name, hex);
+
+    if (name === '--color-text-light') {
+      updateScale('on-dark', hex, ON_DARK_ALPHAS);
+      const [r,g,b] = hexToRgb(hex);
+      document.documentElement.style.setProperty('--color-text-ghost', `rgba(${r},${g},${b},0.45)`);
+    }
+    if (name === '--color-text')  updateScale('ink',   hex, INK_ALPHAS);
+    if (name === '--color-white') updateScale('white', hex, WHITE_ALPHAS);
+  }
+
+  // ── Sync the UI row to a new value ────────────────────────────
+
+  function syncRow(tokenName: string, hex: string): void {
+    const row = document.querySelector<HTMLElement>(`.pw-row[data-token="${tokenName}"]`);
+    if (row) {
+      const swatch = row.querySelector<HTMLElement>('.pw-swatch');
+      if (swatch) swatch.style.background = hex;
+    }
+    const hexInput = document.querySelector<HTMLInputElement>(`.pw-hex[data-token="${tokenName}"]`);
+    if (hexInput) {
+      hexInput.value = hex.toUpperCase();
+      hexInput.classList.remove('invalid');
+    }
+    const picker = document.querySelector<HTMLInputElement>(`.pw-picker[data-token="${tokenName}"]`);
+    if (picker) picker.value = hex;
+  }
+
+  // ── Export ────────────────────────────────────────────────────
+
+  function buildExportCSS(): string {
+    const root = document.documentElement;
+    const cs   = getComputedStyle(root);
+
+    // Read current values (inline overrides take precedence)
+    const current: Record<string, string> = {};
+    for (const name of Object.keys(DEFAULTS)) {
+      current[name] = (root.style.getPropertyValue(name) || cs.getPropertyValue(name)).trim();
+    }
+
+    const [tr,tg,tb]   = hexToRgb(current['--color-text'] ?? DEFAULTS['--color-text']!);
+    const [lr,lg,lb]   = hexToRgb(current['--color-text-light'] ?? DEFAULTS['--color-text-light']!);
+    const [wr,wg,wb]   = hexToRgb(current['--color-white'] ?? DEFAULTS['--color-white']!);
+
+    const pad = (s: string, n: number) => s.padEnd(n);
+
+    const themeLines = [
+      `  /* Backgrounds */`,
+      `  ${pad('--color-bg-base:',    20)} ${current['--color-bg-base']};`,
+      `  ${pad('--color-bg-alt:',     20)} ${current['--color-bg-alt']};`,
+      `  ${pad('--color-bg-dark:',    20)} ${current['--color-bg-dark']};`,
+      `  ${pad('--color-bg-darkest:', 20)} var(--color-bg-dark);`,
+      `  ${pad('--color-bg-card:',    20)} ${current['--color-bg-card']};`,
+      ``,
+      `  /* Accents */`,
+      `  ${pad('--color-violet:', 20)} ${current['--color-violet']};`,
+      `  ${pad('--color-mint:',   20)} ${current['--color-mint']};`,
+      `  ${pad('--color-coral:',  20)} ${current['--color-coral']};`,
+      `  ${pad('--color-gold:',   20)} ${current['--color-gold']};`,
+      `  ${pad('--color-rose:',   20)} ${current['--color-rose']};`,
+      ``,
+      `  /* Text */`,
+      `  ${pad('--color-white:',      20)} ${current['--color-white']};`,
+      `  ${pad('--color-text:',       20)} ${current['--color-text']};`,
+      `  ${pad('--color-text-dim:',   20)} ${current['--color-text-dim']};`,
+      `  ${pad('--color-text-light:', 20)} ${current['--color-text-light']};`,
+      `  ${pad('--color-text-ghost:', 20)} rgba(${lr},${lg},${lb},0.45);`,
+    ].join('\n');
+
+    const onDarkLines = ON_DARK_ALPHAS
+      .map(a => `  ${pad(`--on-dark-${String(a).padStart(2,'0')}:`, 18)} rgba(${lr},${lg},${lb},${(a/100).toFixed(2)});`)
+      .join('\n');
+
+    const inkLines = INK_ALPHAS
+      .map(a => `  ${pad(`--ink-${String(a).padStart(2,'0')}:`, 18)} rgba(${tr},${tg},${tb},${(a/100).toFixed(2)});`)
+      .join('\n');
+
+    const whiteLines = WHITE_ALPHAS
+      .map(a => `  ${pad(`--white-${String(a).padStart(2,'0')}:`, 18)} rgba(${wr},${wg},${wb},${(a/100).toFixed(2)});`)
+      .join('\n');
+
+    return [
+      `@theme {`,
+      themeLines,
+      `}`,
+      ``,
+      `:root {`,
+      `  /* on-dark — text-light at varying opacity */`,
+      onDarkLines,
+      ``,
+      `  /* ink — text at varying opacity */`,
+      inkLines,
+      ``,
+      `  /* white — white at varying opacity */`,
+      whiteLines,
+      `}`,
+    ].join('\n');
+  }
+
+  // ── Wire up UI ────────────────────────────────────────────────
+
+  const panel   = document.getElementById('pw-panel')!;
+  const toggle  = document.getElementById('pw-toggle')!;
+  const close   = document.getElementById('pw-close')!;
+  const resetBtn  = document.getElementById('pw-reset')!;
+  const saveBtn   = document.getElementById('pw-save')!;
+  const exportBtn = document.getElementById('pw-export')!;
+
+  function openPanel()  { panel.classList.add('open');    toggle.setAttribute('aria-expanded','true');  panel.removeAttribute('aria-hidden'); }
+  function closePanel() { panel.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); panel.setAttribute('aria-hidden','true'); }
+
+  toggle.addEventListener('click', () =>
+    panel.classList.contains('open') ? closePanel() : openPanel()
+  );
+  close.addEventListener('click', closePanel);
+
+  // Colour picker input
+  document.querySelectorAll<HTMLInputElement>('.pw-picker').forEach(picker => {
+    picker.addEventListener('input', () => {
+      const name = picker.dataset.token!;
+      const hex  = picker.value.toUpperCase();
+      applyToken(name, hex);
+      syncRow(name, hex);
+    });
+  });
+
+  // Hex text input — apply on Enter or blur
+  document.querySelectorAll<HTMLInputElement>('.pw-hex').forEach(input => {
+    const commit = () => {
+      const raw = input.value.trim();
+      const hex = raw.startsWith('#') ? raw : `#${raw}`;
+      if (isValidHex(hex)) {
+        input.classList.remove('invalid');
+        applyToken(input.dataset.token!, hex.toUpperCase());
+        syncRow(input.dataset.token!, hex.toUpperCase());
+      } else {
+        input.classList.add('invalid');
+      }
+    };
+    input.addEventListener('blur', commit);
+    input.addEventListener('keydown', (e: KeyboardEvent) => { if (e.key === 'Enter') { e.preventDefault(); commit(); } });
+  });
+
+  // Reset
+  resetBtn.addEventListener('click', () => {
+    for (const [name, value] of Object.entries(DEFAULTS)) {
+      document.documentElement.style.removeProperty(name);
+      applyToken(name, value); // resets derived scales too
+      syncRow(name, value);
+    }
+    // Also reset the derived scale properties entirely
+    const root = document.documentElement;
+    [...ON_DARK_ALPHAS].forEach(a => root.style.removeProperty(`--on-dark-${String(a).padStart(2,'0')}`));
+    [...INK_ALPHAS    ].forEach(a => root.style.removeProperty(`--ink-${String(a).padStart(2,'0')}`));
+    [...WHITE_ALPHAS  ].forEach(a => root.style.removeProperty(`--white-${String(a).padStart(2,'0')}`));
+    root.style.removeProperty('--color-text-ghost');
+  });
+
+  // Save to global.css
+  saveBtn.addEventListener('click', async () => {
+    const root = document.documentElement;
+    const cs   = getComputedStyle(root);
+    const tokens: Record<string, string> = {};
+    for (const name of Object.keys(DEFAULTS)) {
+      tokens[name] = (root.style.getPropertyValue(name) || cs.getPropertyValue(name)).trim();
+    }
+    saveBtn.textContent = 'SAVING…';
+    saveBtn.classList.add('saving');
+    try {
+      const res = await fetch('/_palette/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tokens),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      saveBtn.textContent = 'SAVED ✓';
+      saveBtn.classList.remove('saving');
+      saveBtn.classList.add('saved');
+    } catch (err) {
+      saveBtn.textContent = 'ERROR ✕';
+      saveBtn.classList.remove('saving');
+      saveBtn.classList.add('error');
+    }
+    setTimeout(() => {
+      saveBtn.textContent = 'SAVE';
+      saveBtn.classList.remove('saved', 'error');
+    }, 2000);
+  });
+
+  // Export
+  exportBtn.addEventListener('click', async () => {
+    const css = buildExportCSS();
+    try {
+      await navigator.clipboard.writeText(css);
+    } catch {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = css;
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    exportBtn.textContent = 'COPIED ✓';
+    exportBtn.classList.add('copied');
+    setTimeout(() => {
+      exportBtn.textContent = 'EXPORT CSS';
+      exportBtn.classList.remove('copied');
+    }, 2000);
+  });
+</script>

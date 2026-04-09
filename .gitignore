@@ -5,7 +5,7 @@ package-lock.json
 public/admin/
 
 # development scripts
-dev/
+/dev/
 CLAUDE.md
 AGENTS.md
 TODO.md
