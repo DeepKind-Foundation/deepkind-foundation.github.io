@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4.5rem;
+  height: 6.75rem;
   gap: 2rem;
 }
 
@@ -31,34 +31,35 @@
   flex-shrink: 0;
 }
 
-.nav__logo-img {
-  height: 32px;
+.nav__logo-mark {
+  height: 48px;
   width: auto;
   flex-shrink: 0;
 }
 
-.nav__logo-img--dark {
-  display: none;
+.nav__wordmark {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  transition: color 0.25s ease;
 }
 
-.nav.scrolled .nav__logo-img--light {
-  display: none;
-}
-
-.nav.scrolled .nav__logo-img--dark {
-  display: block;
+.nav.scrolled .nav__wordmark {
+  color: var(--color-text);
 }
 
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 3.75rem;
   list-style: none;
   margin-left: auto;
 }
 
 .nav__link {
-  font-size: var(--text-sm);
+  font-size: var(--text-xl);
   font-weight: 500;
   color: var(--on-dark-70);
   transition: color 0.15s ease;
@@ -126,7 +127,7 @@
 
 .nav__lang {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 1rem;
   letter-spacing: 0.08em;
   color: var(--on-dark-40);
   transition: color 0.15s;
@@ -135,7 +136,7 @@
 
 .nav__lang-sep {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 1rem;
   color: var(--on-dark-22);
 }
 
@@ -156,8 +157,8 @@
 
 .nav__hamburger-line {
   display: block;
-  width: 22px;
-  height: 1.5px;
+  width: 34px;
+  height: 2px;
   background: var(--on-dark-70);
   transition: background 0.15s;
   border-radius: 1px;
