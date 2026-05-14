@@ -1,5 +1,6 @@
 ---
 import content from '@data/content';
+import logoMark from '@assets/svg/logo-mark-icon.svg?raw';
 const { links } = content.navigation;
 ---
 
@@ -8,7 +9,7 @@ const { links } = content.navigation;
     <nav class="nav__inner" aria-label="Główna nawigacja">
 
       <a href="/" class="nav__logo" aria-label="DeepKind, strona główna">
-        <img src="/assets/logo-mark-icon.svg" alt="" aria-hidden="true" class="nav__logo-mark" />
+        <span class="nav__logo-mark" aria-hidden="true" set:html={logoMark} />
         <span class="nav__wordmark">DeepKind</span>
       </a>
 
