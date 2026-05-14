@@ -13,7 +13,7 @@
   "hero": {
     "line1": "Technology that serves.",
     "line2": "Humans who decide.",
-    "subtitle": "We connect technology with kindness. We make space for conversations about building responsibly — tools that support people, not ones that wear them down. We believe in empathy, ethics and wellbeing, because innovation should work for people.",
+    "subtitle": "We connect technology with kindness. We make space for conversations about building responsibly, creating tools that support people, not ones that wear them down. We believe in empathy, ethics and wellbeing, because innovation should work for people.",
     "cta": "See our projects",
     "secondaryCta": { "label": "Join us" }
   },
@@ -63,7 +63,7 @@
       {
         "title": "GrowUp Hackathon",
         "subtitle": "Technology for young adults",
-        "description": "For people aged 18–26. Together we tackle the real challenges of today: stress, uncertainty, figuring out adulthood — using technology and creative thinking.",
+        "description": "For people aged 18–26. Together we tackle the real challenges of today: stress, uncertainty, figuring out adulthood, through technology and creative thinking.",
         "image": "/img/project-hackathon.webp",
         "cta": "Find out more",
         "url": "https://growuphackathon.pl/",
@@ -72,7 +72,7 @@
       {
         "title": "Deep & Kind Retreat",
         "subtitle": "Space for women in tech and business",
-        "description": "Time to slow down. Rest, honest conversations and time in nature — for women who are always moving fast.",
+        "description": "Time to slow down. Rest, honest conversations and time in nature for women who are always moving fast.",
         "image": "/img/project-retreat.webp",
         "cta": "Find out more",
         "url": "https://deepkind-retreat.lovable.app",
@@ -102,10 +102,10 @@
     "title": "Technology with a human face",
     "paragraphs": [
       "DeepKind Foundation started from a simple belief: in a world of constant change, we need new ways of thinking, rooted in empathy, care and the responsible use of technology. We work across education, the humanities and innovation, building spaces where thinking and doing meet.",
-      "Care for people is at the heart of everything we do — their wellbeing, their relationships, their sense of agency. We believe technology should strengthen people, not override them. We connect different perspectives and partners to create lasting change that means something.",
+      "Care for people is at the heart of everything we do: their wellbeing, their relationships, their sense of agency. We believe technology should strengthen people, not override them. We connect different perspectives and partners to create lasting change that means something.",
       "DeepKind is a space where kindness becomes practice, and responsibility becomes the foundation of the future."
     ],
-    "quote": "We build initiatives that connect people, technology and care — creating a movement that inspires living with energy, empathy and mindfulness."
+    "quote": "We build initiatives that connect people, technology and care, creating a movement that inspires living with energy, empathy and mindfulness."
   },
   "getInvolved": {
     "heading": "Get Involved",
@@ -147,7 +147,7 @@
       },
       {
         "question": "What does \"technology that serves\" mean to you?",
-        "answer": "Technology built with the human in mind — their wellbeing, their abilities and their limits. Not just clever, but responsible."
+        "answer": "Technology built with the human in mind: their wellbeing, their abilities and their limits. Not just clever, but responsible."
       },
       {
         "question": "Who do you work with?",
@@ -159,19 +159,19 @@
       },
       {
         "question": "Are participation fees required?",
-        "answer": "Many of our programmes are free, especially those for children, young adults and communities. Some initiatives have a cost — we always say so upfront for each project."
+        "answer": "Many of our programmes are free, especially those for children, young adults and communities. Some initiatives have a cost; we always say so upfront for each project."
       },
       {
         "question": "Why do you combine technology with the humanities?",
-        "answer": "Because technical skills alone aren't enough to deal with the complex problems of today. You also need ethics, reflection and a genuine understanding of people — their feelings, their motivations, their context."
+        "answer": "Because technical skills alone aren't enough to deal with the complex problems of today. You also need ethics, reflection and a genuine understanding of people: their feelings, their motivations, their context."
       },
       {
         "question": "What makes your approach to leadership different?",
-        "answer": "We care about balance rather than constant speed. We think good leadership starts with knowing yourself — and that's what shapes your decisions, your team and your organisation."
+        "answer": "We care about balance rather than constant speed. We think good leadership starts with knowing yourself, and that's what shapes your decisions, your team and your organisation."
       },
       {
         "question": "Is this only for people in tech?",
-        "answer": "No. Technology is part of the context, but our work is for anyone who wants to act with more intention — whatever field they're in."
+        "answer": "No. Technology is part of the context, but our work is for anyone who wants to act with more intention, whatever field they're in."
       },
       {
         "question": "Do you work with companies and organisations?",
@@ -183,7 +183,7 @@
       },
       {
         "question": "What kind of change are you after?",
-        "answer": "The kind that lasts and actually means something — not just fast and surface-level. Change that gives people more room, builds real connections and makes work and life a bit healthier."
+        "answer": "The kind that lasts and actually means something, not just fast and surface-level. Change that gives people more room, builds real connections and makes work and life a bit healthier."
       }
     ]
   },

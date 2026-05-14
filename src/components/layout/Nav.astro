@@ -1,6 +1,5 @@
 ---
 import content from '@data/content';
-import logoMarkSvg from '@assets/svg/logo-mark.svg?raw';
 const { links } = content.navigation;
 ---
 
@@ -8,9 +7,9 @@ const { links } = content.navigation;
   <div class="wrap">
     <nav class="nav__inner" aria-label="Główna nawigacja">
 
-      <a href="/" class="nav__logo" aria-label="DeepKind — strona główna">
-        <Fragment set:html={logoMarkSvg} />
-        <span class="nav__wordmark">DeepKind</span>
+      <a href="/" class="nav__logo" aria-label="DeepKind, strona główna">
+        <img src="/assets/logo-light.svg" alt="DeepKind" class="nav__logo-img nav__logo-img--light" />
+        <img src="/assets/logo.svg" alt="DeepKind" class="nav__logo-img nav__logo-img--dark" aria-hidden="true" />
       </a>
 
       <ul class="nav__links" id="nav-links">

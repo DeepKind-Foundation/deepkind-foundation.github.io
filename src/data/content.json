@@ -12,7 +12,7 @@
   },
   "hero": {
     "title": "Technologia, która służy. Człowiek, który decyduje.",
-    "subtitle": "Łączymy technologię z życzliwością. Tworzymy przestrzeń do rozmowy o tym, jak projektować odpowiedzialnie — tak, by wspierać ludzi, a nie ich przeciążać. Stawiamy na empatię, etykę i dobrostan, bo wierzymy, że innowacje mogą i powinny działać na rzecz człowieka.",
+    "subtitle": "Łączymy technologię z życzliwością. Tworzymy przestrzeń do rozmowy o tym, jak projektować odpowiedzialnie, tak by wspierać ludzi, a nie ich przeciążać. Stawiamy na empatię, etykę i dobrostan, bo wierzymy, że innowacje mogą i powinny działać na rzecz człowieka.",
     "cta": "Poznaj nasze projekty",
     "secondaryCta": { "label": "Dołącz do nas", "href": "#join" }
   },
@@ -23,7 +23,7 @@
         "id": "tech",
         "title": "Technologia i odpowiedzialność",
         "tags": ["Ethical AI", "dezinformacja", "cyberbezpieczeństwo", "tech for good", "środowisko i klimat"],
-        "description": "Technologia zmienia świat — pytamy, czy robi to dobrze. Wspieramy rozwiązania, które służą ludziom i planecie, nie tylko wzrostowi.",
+        "description": "Technologia zmienia świat. Pytamy, czy robi to dobrze. Wspieramy rozwiązania, które służą ludziom i planecie, nie tylko wzrostowi.",
         "accent": "blue"
       },
       {
@@ -62,7 +62,7 @@
       {
         "title": "GrowUp Hackathon",
         "subtitle": "Technologia dla młodych dorosłych",
-        "description": "Dla osób 18–26 lat. Pracujemy nad realnymi wyzwaniami współczesności — od stresu po odnalezienie się w świecie zmian — wykorzystując technologię i kreatywne myślenie.",
+        "description": "Dla osób 18–26 lat. Pracujemy nad realnymi wyzwaniami współczesności: od stresu po odnalezienie się w świecie zmian, z wykorzystaniem technologii i kreatywnego myślenia.",
         "image": "/img/project-hackathon.webp",
         "cta": "Dowiedz się więcej",
         "url": "https://growuphackathon.pl/",
@@ -71,7 +71,7 @@
       {
         "title": "Deep & Kind Retreat",
         "subtitle": "Przestrzeń dla kobiet w tech i biznesie",
-        "description": "Czas na zatrzymanie. Regeneracja, szczere rozmowy i kontakt z naturą — dla kobiet, które na co dzień działają w szybkim tempie.",
+        "description": "Czas na zatrzymanie. Regeneracja, szczere rozmowy i kontakt z naturą dla kobiet, które na co dzień działają w szybkim tempie.",
         "image": "/img/project-retreat.webp",
         "cta": "Dowiedz się więcej",
         "url": "https://deepkind-retreat.lovable.app",
@@ -80,7 +80,7 @@
       {
         "title": "Minds & Muscles",
         "subtitle": "Ruch, troska i relacje",
-        "description": "Program dla dzieci i rodziców, który łączy aktywność fizyczną z budowaniem więzi — w prosty, dostępny sposób.",
+        "description": "Program dla dzieci i rodziców, który łączy aktywność fizyczną z budowaniem więzi w prosty, dostępny sposób.",
         "image": "/img/project-minds.webp",
         "cta": "Dowiedz się więcej",
         "url": "https://minds-and-muscles.pl/",
@@ -89,7 +89,7 @@
       {
         "title": "Wisdom of Generation",
         "subtitle": "Doświadczenie, którego technologia potrzebuje",
-        "description": "Przeciwdziałamy wykluczeniu doświadczonych ekspertek w świecie technologii. Wspieramy kobiety 45+, wzmacniając ich widoczność i przygotowując do ról liderskich w erze AI — tam, gdzie decyzje mają realny wpływ.",
+        "description": "Przeciwdziałamy wykluczeniu doświadczonych ekspertek w świecie technologii. Wspieramy kobiety 45+, wzmacniając ich widoczność i przygotowując do ról liderskich w erze AI, gdzie decyzje mają realny wpływ.",
         "image": "/img/project-wisdom.webp",
         "cta": "Dowiedz się więcej",
         "url": "#",
@@ -100,9 +100,9 @@
   "about": {
     "title": "Technologia z ludzką twarzą",
     "paragraphs": [
-      "Fundacja DeepKind powstała z idei, że w świecie pełnym zmian potrzebujemy nowych sposobów myślenia — opartych na empatii, uważności i odpowiedzialnym wykorzystaniu wiedzy oraz technologii. Działamy na przecięciu edukacji, humanistyki i innowacji, tworząc przestrzenie, w których refleksja spotyka się z praktycznym działaniem.",
-      "W centrum naszych działań leży troska o człowieka — jego dobrostan, relacje i sprawczość — oraz przekonanie, że technologia powinna służyć jako narzędzie wzmacniające, nie dominujące. Łączymy różne perspektywy i partnerów, budując ekosystem, który sprzyja powstawaniu zmian trwałych i zakorzenionych w wartościach.",
-      "DeepKind to przestrzeń, w której życzliwość staje się praktyką, a odpowiedzialność — fundamentem przyszłości."
+      "Fundacja DeepKind powstała z idei, że w świecie pełnym zmian potrzebujemy nowych sposobów myślenia opartych na empatii, uważności i odpowiedzialnym wykorzystaniu wiedzy oraz technologii. Działamy na przecięciu edukacji, humanistyki i innowacji, tworząc przestrzenie, w których refleksja spotyka się z praktycznym działaniem.",
+      "W centrum naszych działań leży troska o człowieka, jego dobrostan, relacje i sprawczość, oraz przekonanie, że technologia powinna służyć jako narzędzie wzmacniające, nie dominujące. Łączymy różne perspektywy i partnerów, budując ekosystem, który sprzyja powstawaniu zmian trwałych i zakorzenionych w wartościach.",
+      "DeepKind to przestrzeń, w której życzliwość staje się praktyką, a odpowiedzialność fundamentem przyszłości."
     ],
     "quote": "Tworzymy inicjatywy, które łączą ludzi, technologię i troskę, tworząc ruch, który inspiruje do życia z energią, empatią i uważnością."
   },
@@ -142,11 +142,11 @@
       },
       {
         "question": "Dlaczego technologia potrzebuje dziś więcej uważności?",
-        "answer": "Bo jej wpływ wykracza daleko poza funkcjonalność. Kształtuje sposób, w jaki myślimy, pracujemy i budujemy relacje. Uważność pozwala projektować rozwiązania, które wspierają ludzi — zamiast ich przeciążać."
+        "answer": "Bo jej wpływ wykracza daleko poza funkcjonalność. Kształtuje sposób, w jaki myślimy, pracujemy i budujemy relacje. Uważność pozwala projektować rozwiązania, które wspierają ludzi zamiast ich przeciążać."
       },
       {
         "question": "Co oznacza dla Was \u201etechnologia, która służy\u201d?",
-        "answer": "To technologia tworzona z myślą o człowieku — jego dobrostanie, możliwościach i ograniczeniach. Nie chodzi tylko o innowacyjność, ale o odpowiedzialność za realny wpływ."
+        "answer": "To technologia tworzona z myślą o człowieku, jego dobrostanie, możliwościach i ograniczeniach. Nie chodzi tylko o innowacyjność, ale o odpowiedzialność za realny wpływ."
       },
       {
         "question": "Do kogo kierowane są Wasze działania?",
@@ -158,23 +158,23 @@
       },
       {
         "question": "Czy udział w projektach jest płatny?",
-        "answer": "Część naszych programów jest bezpłatna, szczególnie te skierowane do dzieci, młodych dorosłych i społeczności. Niektóre inicjatywy mogą mieć formę płatną — informujemy o tym zawsze indywidualnie przy danym projekcie."
+        "answer": "Część naszych programów jest bezpłatna, szczególnie te skierowane do dzieci, młodych dorosłych i społeczności. Niektóre inicjatywy mogą mieć formę płatną; informujemy o tym zawsze indywidualnie przy danym projekcie."
       },
       {
         "question": "Dlaczego łączycie technologię z humanistyką?",
-        "answer": "Bo same kompetencje techniczne nie wystarczą, by odpowiadać na złożone wyzwania współczesności. Potrzebujemy też refleksji, etyki i zrozumienia człowieka — jego emocji, motywacji i kontekstu."
+        "answer": "Bo same kompetencje techniczne nie wystarczą, by odpowiadać na złożone wyzwania współczesności. Potrzebujemy też refleksji, etyki i zrozumienia człowieka: jego emocji, motywacji i kontekstu."
       },
       {
         "question": "Co wyróżnia Wasze podejście do rozwoju i przywództwa?",
-        "answer": "Stawiamy na równowagę zamiast ciągłego przyspieszenia. Wierzymy, że świadome przywództwo zaczyna się od kontaktu ze sobą — dopiero potem przekłada się na decyzje, zespoły i organizacje."
+        "answer": "Stawiamy na równowagę zamiast ciągłego przyspieszenia. Wierzymy, że świadome przywództwo zaczyna się od kontaktu ze sobą, który dopiero potem przekłada się na decyzje, zespoły i organizacje."
       },
       {
         "question": "Czy to przestrzeń tylko dla osób z branży technologicznej?",
-        "answer": "Nie. Choć technologia jest ważnym kontekstem, nasze działania są dla wszystkich, którzy chcą działać bardziej świadomie — niezależnie od branży."
+        "answer": "Nie. Choć technologia jest ważnym kontekstem, nasze działania są dla wszystkich, którzy chcą działać bardziej świadomie, niezależnie od branży."
       },
       {
         "question": "Czy współpracujecie z firmami i organizacjami?",
-        "answer": "Tak — współpracujemy z partnerami, którzy chcą działać odpowiedzialnie i tworzyć rozwiązania z realnym wpływem społecznym i środowiskowym."
+        "answer": "Tak, współpracujemy z partnerami, którzy chcą działać odpowiedzialnie i tworzyć rozwiązania z realnym wpływem społecznym i środowiskowym."
       },
       {
         "question": "Gdzie działacie?",
@@ -182,7 +182,7 @@
       },
       {
         "question": "Jaką zmianę chcecie realnie wspierać?",
-        "answer": "Taką, która jest trwała i zakorzeniona w wartościach — nie tylko szybka i powierzchowna. Interesuje nas zmiana, która wzmacnia ludzi, buduje relacje i tworzy zdrowsze środowiska pracy i życia."
+        "answer": "Taką, która jest trwała i zakorzeniona w wartościach, nie tylko szybka i powierzchowna. Interesuje nas zmiana, która wzmacnia ludzi, buduje relacje i tworzy zdrowsze środowiska pracy i życia."
       }
     ]
   },

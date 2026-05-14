@@ -1,13 +1,13 @@
-<svg class="nav__logo-mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
   <g id="glyph-d">
-    <rect x="15" y="20" width="10" height="60" fill="#581C87"/>
-    <path d="M 25 20 L 48 40 L 48 50 L 25 50 Z" fill="#7E22CE" opacity="0.85"/>
-    <path d="M 25 80 L 48 60 L 48 50 L 25 50 Z" fill="#581C87"/>
+    <rect x="15" y="20" width="10" height="60" fill="#8B53FF"/>
+    <path d="M 25 20 L 48 40 L 48 50 L 25 50 Z" fill="#8B53FF" opacity="0.65"/>
+    <path d="M 25 80 L 48 60 L 48 50 L 25 50 Z" fill="#8B53FF"/>
   </g>
   <g id="glyph-k">
-    <rect x="55" y="20" width="10" height="60" fill="#0D9488"/>
-    <path d="M 65 42 L 85 20 L 85 35 L 65 55 Z" fill="#2DD4BF"/>
-    <path d="M 65 58 L 85 80 L 85 65 L 65 45 Z" fill="#2DD4BF"/>
+    <rect x="55" y="20" width="10" height="60" fill="#5CE0E6" opacity="0.75"/>
+    <path d="M 65 42 L 85 20 L 85 35 L 65 55 Z" fill="#5CE0E6"/>
+    <path d="M 65 58 L 85 80 L 85 65 L 65 45 Z" fill="#5CE0E6"/>
   </g>
-  <circle cx="51.5" cy="50" r="3" fill="#2DD4BF"/>
+  <circle cx="51.5" cy="50" r="3" fill="#5CE0E6"/>
 </svg>
