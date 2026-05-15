@@ -50,7 +50,7 @@
 
 .nav__wordmark {
   font-family: var(--font-display);
-  font-size: var(--text-xl);
+  font-size: var(--text-base);
   font-weight: 600;
   letter-spacing: -0.02em;
   color: rgb(92,224,230);
@@ -64,13 +64,13 @@
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 3.75rem;
+  gap: 2rem;
   list-style: none;
   margin-left: auto;
 }
 
 .nav__link {
-  font-size: var(--text-xl);
+  font-size: var(--text-base);
   font-weight: 500;
   color: var(--on-dark-70);
   transition: color 0.15s ease;
@@ -138,7 +138,7 @@
 
 .nav__lang {
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   color: var(--on-dark-40);
   transition: color 0.15s;
@@ -147,7 +147,7 @@
 
 .nav__lang-sep {
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: var(--on-dark-22);
 }
 

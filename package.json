@@ -19,15 +19,15 @@
     "astro": "^6.1.10",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.3.0",
-    "tinacms": "^3.8.1"
+    "tinacms": "^3.8.1",
+    "vite": "^7.3.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2"
   },
   "pnpm": {
     "overrides": {
-      "astro>vite": "^7",
-      "@tailwindcss/vite>vite": "^7",
+      "vite": "^7",
       "defu": ">=6.1.5",
       "devalue": ">=5.8.1",
       "protobufjs": ">=7.5.6",
