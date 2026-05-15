@@ -6,6 +6,10 @@ import fs from 'fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const PALETTE_NAME_RE = /^--color-[a-z-]+$/;
+const PALETTE_HEX_RE  = /^#[0-9a-fA-F]{6}$/;
+const PALETTE_ORIGIN_RE = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+
 /** Dev-only Vite plugin: POST /_palette/save writes hex token values into global.css */
 function paletteSavePlugin() {
   return {
@@ -16,18 +20,29 @@ function paletteSavePlugin() {
           res.writeHead(405).end();
           return;
         }
+
+        const origin = req.headers['origin'] ?? req.headers['referer'] ?? '';
+        if (!PALETTE_ORIGIN_RE.test(origin)) {
+          res.writeHead(403).end();
+          return;
+        }
+
         let body = '';
-        req.on('data', chunk => { body += chunk; });
+        req.on('data', chunk => {
+          body += chunk;
+          if (body.length > 4096) { res.writeHead(413).end(); req.destroy(); }
+        });
         req.on('end', () => {
           try {
             const tokens = JSON.parse(body);
             const cssPath = path.resolve(__dirname, 'src/styles/global.css');
             let css = fs.readFileSync(cssPath, 'utf-8');
             for (const [name, value] of Object.entries(tokens)) {
-              // Replace only lines matching:  --color-xxx:   #XXXXXX
+              if (!PALETTE_NAME_RE.test(name) || !PALETTE_HEX_RE.test(String(value))) continue;
+              // Safe: name is allowlisted, value is a validated hex literal
               css = css.replace(
                 new RegExp(`(${name}:\\s*)#[0-9a-fA-F]{6}`, 'g'),
-                `$1${value.toUpperCase()}`
+                `$1${String(value).toUpperCase()}`
               );
             }
             fs.writeFileSync(cssPath, css, 'utf-8');

@@ -21,6 +21,15 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://deepkind.org');
+
+function safeJsonLd(obj: unknown): string {
+  return JSON.stringify(obj)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026')
+    .replace(new RegExp('\u2028', 'g'), '\\u2028')
+    .replace(new RegExp('\u2029', 'g'), '\\u2029');
+}
 ---
 
 <!doctype html>
@@ -47,7 +56,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://deepkind
     <meta name="twitter:image"       content={new URL('/assets/logo.png', canonicalURL).href} />
 
     <!-- Structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={safeJsonLd({
       "@context": "https://schema.org",
       "@type": "NGO",
       "name": "DeepKind Foundation",
@@ -60,6 +69,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://deepkind
       "areaServed": "PL",
       "sameAs": content.footer.connect.filter(l => !l.url.startsWith('mailto:') && l.url !== '#').map(l => l.url)
     })} />
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self';" />
 
     <!-- Theme color (matches dark nav / hero) -->
     <meta name="theme-color" content="#0C0E1A" />
