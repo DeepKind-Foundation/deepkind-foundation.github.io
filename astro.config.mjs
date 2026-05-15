@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -60,6 +61,7 @@ function paletteSavePlugin() {
 
 export default defineConfig({
   site: 'https://deepkind.org',
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss(), paletteSavePlugin()],
     resolve: {

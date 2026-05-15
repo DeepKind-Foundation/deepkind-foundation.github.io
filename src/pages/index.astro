@@ -7,9 +7,20 @@ import About from '@sections/About.astro';
 import Support from '@sections/Support.astro';
 import FAQ from '@sections/FAQ.astro';
 import Contact from '@sections/Contact.astro';
+import content from '@data/content';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: content.faq.items.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
 ---
 
-<BaseLayout>
+<BaseLayout schema={faqSchema}>
   <Hero />
   <Bento />
   <About />

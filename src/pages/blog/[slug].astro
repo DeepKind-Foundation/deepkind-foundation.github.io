@@ -10,6 +10,27 @@ export async function getStaticPaths() {
 const { post, allPosts } = Astro.props;
 const { Content } = await render(post);
 
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.excerpt,
+  datePublished: new Date(post.data.date).toISOString(),
+  inLanguage: 'pl',
+  author: {
+    '@type': 'Organization',
+    name: 'DeepKind Foundation',
+    url: 'https://deepkind.org',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'DeepKind Foundation',
+    url: 'https://deepkind.org',
+    logo: { '@type': 'ImageObject', url: 'https://deepkind.org/assets/logo.png' },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `https://deepkind.org/blog/${post.id}` },
+};
+
 const otherPosts = allPosts
   .filter(p => p.id !== post.id)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
@@ -33,7 +54,7 @@ function formatDate(iso: string): string {
 }
 ---
 
-<BaseLayout title={`${post.data.title} — DeepKind Blog`} description={post.data.excerpt}>
+<BaseLayout title={`${post.data.title} — DeepKind Blog`} description={post.data.excerpt} schema={articleSchema}>
 
   <article>
 
