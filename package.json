@@ -16,7 +16,7 @@
     "@fontsource/geist-mono": "^5.0.0",
     "@tailwindcss/vite": "^4.3.0",
     "@tinacms/cli": "^2.3.1",
-    "astro": "^6.3.3",
+    "astro": "^5.18.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.3.0",
     "tinacms": "^3.8.1"
@@ -26,6 +26,7 @@
   },
   "pnpm": {
     "overrides": {
+      "astro>vite": ">=6.4.2",
       "@tailwindcss/vite>vite": ">=6.4.2",
       "defu": ">=6.1.5",
       "devalue": ">=5.8.1",
