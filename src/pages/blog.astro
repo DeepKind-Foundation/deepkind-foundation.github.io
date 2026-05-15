@@ -50,6 +50,7 @@ function formatDate(iso: string): string {
           <button
             class={`blog-filter${i === 0 ? ' blog-filter--active' : ''}`}
             style={`--tag-color: ${tagColor(cat)}`}
+            data-filter={cat}
           >#{cat}</button>
         ))}
       </nav>
@@ -57,7 +58,7 @@ function formatDate(iso: string): string {
       {posts.length > 0 ? (
         <ol class="blog-grid">
           {posts.map(post => (
-            <li class="blog-card">
+            <li class="blog-card" data-category={post.data.category}>
               <a href={`/blog/${post.slug}`} class="blog-card__link">
                 <span
                   class="blog-card__category"
@@ -90,3 +91,22 @@ function formatDate(iso: string): string {
   </section>
 
 </BaseLayout>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const cards   = document.querySelectorAll<HTMLLIElement>('.blog-card');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const active = btn.dataset.filter ?? 'Wszystkie';
+
+      filters.forEach(b => b.classList.remove('blog-filter--active'));
+      btn.classList.add('blog-filter--active');
+
+      cards.forEach(card => {
+        const match = active === 'Wszystkie' || card.dataset.category === active;
+        card.hidden = !match;
+      });
+    });
+  });
+</script>
