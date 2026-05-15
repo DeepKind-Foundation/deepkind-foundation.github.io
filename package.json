@@ -26,8 +26,8 @@
   },
   "pnpm": {
     "overrides": {
-      "astro>vite": ">=6.4.2",
-      "@tailwindcss/vite>vite": ">=6.4.2",
+      "astro>vite": "^7",
+      "@tailwindcss/vite>vite": "^7",
       "defu": ">=6.1.5",
       "devalue": ">=5.8.1",
       "protobufjs": ">=7.5.6",

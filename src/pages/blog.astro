@@ -59,7 +59,7 @@ function formatDate(iso: string): string {
         <ol class="blog-grid">
           {posts.map(post => (
             <li class="blog-card" data-category={post.data.category}>
-              <a href={`/blog/${post.slug}`} class="blog-card__link">
+              <a href={`/blog/${post.id}`} class="blog-card__link">
                 <span
                   class="blog-card__category"
                   style={`--tag-color: ${tagColor(post.data.category)}`}

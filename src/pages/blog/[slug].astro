@@ -1,17 +1,17 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map(post => ({ params: { slug: post.slug }, props: { post, allPosts: posts } }));
+  return posts.map(post => ({ params: { slug: post.id }, props: { post, allPosts: posts } }));
 }
 
 const { post, allPosts } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 const otherPosts = allPosts
-  .filter(p => p.slug !== post.slug)
+  .filter(p => p.id !== post.id)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const categoryColors: Record<string, string> = {
