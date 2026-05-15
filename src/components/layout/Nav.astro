@@ -58,12 +58,14 @@ const isHome = Astro.url.pathname === '/';
     navLinks?.classList.remove('open');
     toggle?.setAttribute('aria-expanded', 'false');
     toggle?.setAttribute('aria-label', 'Otwórz menu');
+    document.body.style.overflow = '';
   }
 
   toggle?.addEventListener('click', () => {
     const isOpen = navLinks?.classList.toggle('open');
     toggle.setAttribute('aria-expanded', String(isOpen));
     toggle.setAttribute('aria-label', isOpen ? 'Zamknij menu' : 'Otwórz menu');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
   document.addEventListener('keydown', (e) => {

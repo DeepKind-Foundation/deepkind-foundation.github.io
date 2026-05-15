@@ -191,7 +191,7 @@
     inset: 0;
     background: var(--surface-nav-mobile);
     backdrop-filter: blur(16px);
-    z-index: 99;
+    z-index: 101;
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
