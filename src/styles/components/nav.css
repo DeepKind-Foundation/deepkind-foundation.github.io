@@ -34,7 +34,7 @@
 .nav__logo-mark {
   display: flex;
   flex-shrink: 0;
-  color: rgb(139,83,255);
+  color: var(--color-brand-purple);
   transition: color 0.25s ease;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .nav.scrolled .nav__logo-mark {
-  color: rgb(92,224,230);
+  color: var(--color-brand-teal);
 }
 
 .nav__wordmark {
@@ -53,12 +53,12 @@
   font-size: var(--text-base);
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: rgb(92,224,230);
+  color: var(--color-brand-teal);
   transition: color 0.25s ease;
 }
 
 .nav.scrolled .nav__wordmark {
-  color: rgb(139,83,255);
+  color: var(--color-brand-purple);
 }
 
 .nav__links {

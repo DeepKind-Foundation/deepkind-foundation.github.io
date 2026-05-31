@@ -10,27 +10,31 @@
    ============================================================ */
 @theme {
   /* Backgrounds */
-  --color-bg-base:    #FDF5FF;
-  --color-bg-alt:     #EEECEA;
-  --color-bg-dark:    #1F1430;
-  --color-bg-card:    #2A1A40;
-  --color-bg-support: #271638;
+  --color-bg-base:    oklch(98% 0.006 308);
+  --color-bg-alt:     oklch(93% 0.004 85);
+  --color-bg-dark:    oklch(14% 0.055 296);
+  --color-bg-card:    oklch(18% 0.065 293);
+  --color-bg-support: oklch(16% 0.060 295);
 
   /* Five accent colors — calm, human-centered palette */
-  --color-violet: #3D62ED;
-  --color-mint:   #4BAF82;
-  --color-coral:  #E87A5B;
-  --color-gold:   #D49640;
-  --color-rose:   #B87CAE;
+  --color-violet: oklch(51% 0.20 264);
+  --color-mint:   oklch(65% 0.11 162);
+  --color-coral:  oklch(66% 0.14 38);
+  --color-gold:   oklch(68% 0.12 65);
+  --color-rose:   oklch(60% 0.09 320);
+
+  /* Brand identity colors — logo mark and wordmark */
+  --color-brand-purple: oklch(54% 0.26 290);
+  --color-brand-teal:   oklch(84% 0.10 196);
 
   /* Pure white */
-  --color-white: #FFFFFF;
+  --color-white: oklch(100% 0 0);
 
   /* Text */
-  --color-text:       #1B1D2E;
-  --color-text-dim:   #5D6280;
-  --color-text-light: #E6ECF8;
-  --color-text-ghost: rgba(230, 236, 248, 0.45);
+  --color-text:       oklch(15% 0.025 262);
+  --color-text-dim:   oklch(43% 0.04 263);
+  --color-text-light: oklch(92% 0.02 255);
+  --color-text-ghost: oklch(92% 0.02 255 / 0.45);
 
   /* Fonts */
   --font-display: "Inter Tight Variable", sans-serif;
@@ -186,6 +190,7 @@ a { color: inherit; text-decoration: none; }
 .reveal {
   opacity: 0;
   transform: translateY(18px);
+  /* 0.85s: intentional — scroll-reveal is a primary content-entry moment, not UI feedback */
   transition: opacity 0.85s var(--ease-expo), transform 0.85s var(--ease-expo);
 }
 .reveal.revealed           { opacity: 1; transform: none; }
@@ -306,16 +311,16 @@ html.a11y-high-contrast {
   50%       { transform: translateY(-16px) rotate(3deg); }
 }
 
-.animate-fade-up  { animation: fade-up 0.85s var(--ease-expo) both; }
-.animate-float    { animation: float-orb 9s ease-in-out infinite; }
+@media (prefers-reduced-motion: no-preference) {
+  .animate-fade-up { animation: fade-up 0.85s var(--ease-expo) both; }
+  /* 9s: intentional ambient float — decorative hero element, not UI feedback */
+  .animate-float   { animation: float-orb 9s ease-in-out infinite; }
 
-/* ── Stagger utility ────────────────────────────────── */
-/*
- * Apply to a container whose children each have .animate-fade-up.
- * Each child gets an additional delay so they cascade in sequence.
- */
-.stagger > *:nth-child(1) { animation-delay: 0ms; }
-.stagger > *:nth-child(2) { animation-delay: 100ms; }
-.stagger > *:nth-child(3) { animation-delay: 200ms; }
-.stagger > *:nth-child(4) { animation-delay: 300ms; }
-.stagger > *:nth-child(5) { animation-delay: 400ms; }
+  /* ── Stagger utility ── */
+  /* Apply to a container whose children each have .animate-fade-up. */
+  .stagger > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger > *:nth-child(2) { animation-delay: 100ms; }
+  .stagger > *:nth-child(3) { animation-delay: 200ms; }
+  .stagger > *:nth-child(4) { animation-delay: 300ms; }
+  .stagger > *:nth-child(5) { animation-delay: 400ms; }
+}

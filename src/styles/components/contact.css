@@ -180,6 +180,11 @@
   background: color-mix(in srgb, var(--color-white) 12%, transparent);
 }
 
+.contact__newsletter-input:focus-visible {
+  outline: 2px solid var(--color-brand-teal);
+  outline-offset: 2px;
+}
+
 .contact__newsletter-btn {
   background: var(--color-violet);
   color: var(--color-white);
