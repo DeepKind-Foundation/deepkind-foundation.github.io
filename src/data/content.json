@@ -1,20 +1,45 @@
 {
   "navigation": {
     "links": [
-      { "name": "O nas", "url": "#about" },
-      { "name": "Projekty", "url": "#projects" },
-      { "name": "Zaangażuj się", "url": "#join" },
-      { "name": "Blog", "url": "/blog", "newTab": true },
-      { "name": "FAQ", "url": "#faq" },
-      { "name": "Kontakt", "url": "#contact" }
+      {
+        "name": "O nas",
+        "url": "#about"
+      },
+      {
+        "name": "Projekty",
+        "url": "#projects"
+      },
+      {
+        "name": "Zaangażuj się",
+        "url": "#join"
+      },
+      {
+        "name": "Blog",
+        "url": "/blog",
+        "newTab": true
+      },
+      {
+        "name": "FAQ",
+        "url": "#faq"
+      },
+      {
+        "name": "Kontakt",
+        "url": "#contact"
+      }
     ],
-    "cta": { "label": "Zaangażuj się", "href": "#join" }
+    "cta": {
+      "label": "Zaangażuj się",
+      "href": "#join"
+    }
   },
   "hero": {
     "title": "Technologia, która służy. Człowiek, który decyduje.",
     "subtitle": "Łączymy technologię z życzliwością. Tworzymy przestrzeń do rozmowy o tym, jak projektować odpowiedzialnie, tak by wspierać ludzi, a nie ich przeciążać. Stawiamy na empatię, etykę i dobrostan, bo wierzymy, że innowacje mogą i powinny działać na rzecz człowieka.",
     "cta": "Poznaj nasze projekty",
-    "secondaryCta": { "label": "Dołącz do nas", "href": "#join" }
+    "secondaryCta": {
+      "label": "Dołącz do nas",
+      "href": "#join"
+    }
   },
   "areas": {
     "header": "Obszary działań",
@@ -22,35 +47,59 @@
       {
         "id": "tech",
         "title": "Technologia i odpowiedzialność",
-        "tags": ["Ethical AI", "dezinformacja", "cyberbezpieczeństwo", "tech for good", "środowisko i klimat"],
+        "tags": [
+          "Ethical AI",
+          "dezinformacja",
+          "cyberbezpieczeństwo",
+          "tech for good",
+          "środowisko i klimat"
+        ],
         "description": "Technologia zmienia świat. Pytamy, czy robi to dobrze. Wspieramy rozwiązania, które służą ludziom i planecie, nie tylko wzrostowi.",
         "accent": "blue"
       },
       {
         "id": "women",
         "title": "Kobieca sprawczość",
-        "tags": ["Female leadership", "community", "przedsiębiorczość z celem"],
+        "tags": [
+          "Female leadership",
+          "community",
+          "przedsiębiorczość z celem"
+        ],
         "description": "Wspieramy kobiety, które chcą działać na własnych zasadach. Budujemy wspólnotę opartą na zaufaniu i współpracy.",
         "accent": "sage"
       },
       {
         "id": "diversity",
         "title": "Różnorodność i dialog",
-        "tags": ["Neurodiversity", "międzypokoleniowość", "relacje", "inkluzywność"],
+        "tags": [
+          "Neurodiversity",
+          "międzypokoleniowość",
+          "relacje",
+          "inkluzywność"
+        ],
         "description": "Wierzymy, że różne style myślenia, wrażliwości i pokoleń są siłą. Tworzymy przestrzenie, w których te różnice stają się wartością.",
         "accent": "lavender"
       },
       {
         "id": "wellbeing",
         "title": "Dobrostan i przywództwo",
-        "tags": ["Burn-out", "balanced leadership", "uważność", "wellbeing"],
+        "tags": [
+          "Burn-out",
+          "balanced leadership",
+          "uważność",
+          "wellbeing"
+        ],
         "description": "Odpowiadamy na presję ciągłej dostępności. Pomagamy liderom i organizacjom odzyskać równowagę i działać z większą świadomością.",
         "accent": "peach"
       },
       {
         "id": "purpose",
         "title": "Przedsiębiorczość z celem",
-        "tags": ["Business for good", "impact", "purpose-driven"],
+        "tags": [
+          "Business for good",
+          "impact",
+          "purpose-driven"
+        ],
         "description": "Wspieramy firmy i inicjatywy, które łączą skuteczność z realnym wpływem na ludzi i środowisko.",
         "accent": "gold"
       }
@@ -145,7 +194,7 @@
         "answer": "Bo jej wpływ wykracza daleko poza funkcjonalność. Kształtuje sposób, w jaki myślimy, pracujemy i budujemy relacje. Uważność pozwala projektować rozwiązania, które wspierają ludzi zamiast ich przeciążać."
       },
       {
-        "question": "Co oznacza dla Was \u201etechnologia, która służy\u201d?",
+        "question": "Co oznacza dla Was „technologia, która służy”?",
         "answer": "To technologia tworzona z myślą o człowieku, jego dobrostanie, możliwościach i ograniczeniach. Nie chodzi tylko o innowacyjność, ale o odpowiedzialność za realny wpływ."
       },
       {
@@ -203,20 +252,50 @@
       "name": "Fundacja DeepKind",
       "city": "Warszawa, Polska",
       "nip": "5214132486",
-      "krs": "0001193215"
+      "krs": "0001193215",
+      "street": "ul. Odolańska 3/15",
+      "postalCode": "02-560",
+      "foundingDate": "2025-07-14"
     },
     "legal": [
-      { "name": "Polityka prywatności", "url": "/polityka-prywatnosci" },
-      { "name": "Polityka cookies", "url": "/polityka-cookies" },
-      { "name": "Regulamin darowizn", "url": "/regulamin-darowizn" },
-      { "name": "Regulamin newslettera", "url": "/regulamin-newslettera" },
-      { "name": "Statut", "url": "/statut" }
+      {
+        "name": "Polityka prywatności",
+        "url": "/polityka-prywatnosci"
+      },
+      {
+        "name": "Polityka cookies",
+        "url": "/polityka-cookies"
+      },
+      {
+        "name": "Regulamin darowizn",
+        "url": "/regulamin-darowizn"
+      },
+      {
+        "name": "Regulamin newslettera",
+        "url": "/regulamin-newslettera"
+      },
+      {
+        "name": "Statut",
+        "url": "/statut"
+      }
     ],
     "connect": [
-      { "name": "Email", "url": "mailto:hello@deepkind.org" },
-      { "name": "LinkedIn", "url": "https://www.linkedin.com/company/deepkind" },
-      { "name": "Instagram", "url": "#" },
-      { "name": "Facebook", "url": "#" }
+      {
+        "name": "Email",
+        "url": "mailto:hello@deepkind.org"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/company/deepkind"
+      },
+      {
+        "name": "Instagram",
+        "url": "#"
+      },
+      {
+        "name": "Facebook",
+        "url": "#"
+      }
     ],
     "copyright": "© 2026 DeepKind Foundation"
   }

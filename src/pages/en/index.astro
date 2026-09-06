@@ -1,0 +1,37 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@sections/Hero.astro';
+import Bento from '@sections/Bento.astro';
+import Projects from '@sections/Projects.astro';
+import About from '@sections/About.astro';
+import Support from '@sections/Support.astro';
+import FAQ from '@sections/FAQ.astro';
+import Contact from '@sections/Contact.astro';
+import contentEn from '@data/content.en.json';
+
+// Override global content for this page
+const content = contentEn;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: content.faq.items.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+const enTitle = content.hero?.titlePrefix ? `${content.hero.titlePrefix} ${content.hero.titleHighlight} ${content.hero.titleSuffix}` : 'DeepKind Foundation';
+const enDescription = content.hero?.description || 'DeepKind Foundation — Merging Humanity with Technology';
+---
+
+<BaseLayout title={enTitle} description={enDescription} schema={faqSchema} lang="en" alternateUrl="/">
+  <Hero content={content} />
+  <Bento content={content} />
+  <About content={content} />
+  <Projects content={content} />
+  <Support content={content} />
+  <FAQ content={content} />
+  <Contact content={content} />
+</BaseLayout>

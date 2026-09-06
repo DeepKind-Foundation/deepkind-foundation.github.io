@@ -1,21 +1,46 @@
 {
   "navigation": {
     "links": [
-      { "name": "About", "url": "#about" },
-      { "name": "Projects", "url": "#projects" },
-      { "name": "Get Involved", "url": "#join" },
-      { "name": "Blog", "url": "/blog", "newTab": true },
-      { "name": "FAQ", "url": "#faq" },
-      { "name": "Contact", "url": "#contact" }
+      {
+        "name": "About",
+        "url": "#about"
+      },
+      {
+        "name": "Projects",
+        "url": "#projects"
+      },
+      {
+        "name": "Get Involved",
+        "url": "#join"
+      },
+      {
+        "name": "Blog",
+        "url": "/blog",
+        "newTab": true
+      },
+      {
+        "name": "FAQ",
+        "url": "#faq"
+      },
+      {
+        "name": "Contact",
+        "url": "#contact"
+      }
     ],
-    "cta": { "label": "Get Involved", "href": "#join" }
+    "cta": {
+      "label": "Get Involved",
+      "href": "#join"
+    }
   },
   "hero": {
     "line1": "Technology that serves.",
     "line2": "Humans who decide.",
     "subtitle": "We connect technology with kindness. We make space for conversations about building responsibly, creating tools that support people, not ones that wear them down. We believe in empathy, ethics and wellbeing, because innovation should work for people.",
     "cta": "See our projects",
-    "secondaryCta": { "label": "Join us" }
+    "secondaryCta": {
+      "label": "Join us"
+    },
+    "title": "Technology that serves. Humans who decide."
   },
   "areas": {
     "header": "Areas of work",
@@ -23,35 +48,59 @@
       {
         "id": "tech",
         "title": "Technology & Responsibility",
-        "tags": ["Ethical AI", "disinformation", "cybersecurity", "tech for good", "environment & climate"],
+        "tags": [
+          "Ethical AI",
+          "disinformation",
+          "cybersecurity",
+          "tech for good",
+          "environment & climate"
+        ],
         "description": "Technology changes the world. We ask whether it does so well. We support solutions that serve people and the planet, not just growth.",
         "accent": "blue"
       },
       {
         "id": "women",
         "title": "Women's Agency",
-        "tags": ["Female leadership", "community", "purpose-driven entrepreneurship"],
+        "tags": [
+          "Female leadership",
+          "community",
+          "purpose-driven entrepreneurship"
+        ],
         "description": "We support women who want to act on their own terms. We build a community grounded in trust and real collaboration.",
         "accent": "sage"
       },
       {
         "id": "diversity",
         "title": "Diversity & Dialogue",
-        "tags": ["Neurodiversity", "cross-generational", "relationships", "inclusivity"],
+        "tags": [
+          "Neurodiversity",
+          "cross-generational",
+          "relationships",
+          "inclusivity"
+        ],
         "description": "We believe different thinking styles, sensibilities and generations are a strength. We create spaces where those differences become an asset.",
         "accent": "lavender"
       },
       {
         "id": "wellbeing",
         "title": "Wellbeing & Leadership",
-        "tags": ["Burn-out", "balanced leadership", "mindfulness", "wellbeing"],
+        "tags": [
+          "Burn-out",
+          "balanced leadership",
+          "mindfulness",
+          "wellbeing"
+        ],
         "description": "We respond to the pressure of constant availability. We help leaders and organisations find their footing again and act with more clarity.",
         "accent": "peach"
       },
       {
         "id": "purpose",
         "title": "Purpose-Driven Entrepreneurship",
-        "tags": ["Business for good", "impact", "purpose-driven"],
+        "tags": [
+          "Business for good",
+          "impact",
+          "purpose-driven"
+        ],
         "description": "We support businesses and initiatives that combine effectiveness with genuine impact on people and the environment.",
         "accent": "gold"
       }
@@ -189,7 +238,7 @@
   },
   "cookieBanner": {
     "title": "Cookies",
-    "text": "We use cookies to give you the best experience on our site. More in our\u00a0",
+    "text": "We use cookies to give you the best experience on our site. More in our ",
     "policyLink": "Cookie Policy",
     "acceptAll": "Accept all",
     "necessary": "Necessary only"
@@ -217,17 +266,44 @@
       "krs": "0001193215"
     },
     "legal": [
-      { "name": "Privacy Policy", "url": "/polityka-prywatnosci" },
-      { "name": "Cookie Policy", "url": "/polityka-cookies" },
-      { "name": "Donation Rules", "url": "/regulamin-darowizn" },
-      { "name": "Newsletter Rules", "url": "/regulamin-newslettera" },
-      { "name": "Statute", "url": "/statut" }
+      {
+        "name": "Privacy Policy",
+        "url": "/polityka-prywatnosci"
+      },
+      {
+        "name": "Cookie Policy",
+        "url": "/polityka-cookies"
+      },
+      {
+        "name": "Donation Rules",
+        "url": "/regulamin-darowizn"
+      },
+      {
+        "name": "Newsletter Rules",
+        "url": "/regulamin-newslettera"
+      },
+      {
+        "name": "Statute",
+        "url": "/statut"
+      }
     ],
     "connect": [
-      { "name": "Email", "url": "mailto:hello@deepkind.org" },
-      { "name": "LinkedIn", "url": "https://www.linkedin.com/company/deepkind" },
-      { "name": "Instagram", "url": "#" },
-      { "name": "Facebook", "url": "#" }
+      {
+        "name": "Email",
+        "url": "mailto:hello@deepkind.org"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/company/deepkind"
+      },
+      {
+        "name": "Instagram",
+        "url": "#"
+      },
+      {
+        "name": "Facebook",
+        "url": "#"
+      }
     ],
     "copyright": "© 2026 DeepKind Foundation"
   }
