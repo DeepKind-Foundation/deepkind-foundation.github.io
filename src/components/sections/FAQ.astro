@@ -1,5 +1,11 @@
 ---
-import content from '@data/content';
+import defaultContent from '@data/content';
+
+type Props = {
+  content?: typeof defaultContent;
+};
+
+const { content = defaultContent } = Astro.props;
 const { items } = content.faq;
 ---
 

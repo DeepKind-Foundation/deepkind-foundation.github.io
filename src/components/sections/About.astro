@@ -1,6 +1,12 @@
 ---
-import content from '@data/content';
+import defaultContent from '@data/content';
 import aboutSvg from '@assets/svg/about-shape.svg?raw';
+
+type Props = {
+  content?: typeof defaultContent;
+};
+
+const { content = defaultContent } = Astro.props;
 const { title, paragraphs, quote } = content.about;
 ---
 

@@ -128,6 +128,9 @@ export interface FooterOrg {
   city: string;
   nip: string;
   krs: string;
+  street: string;
+  postalCode: string;
+  foundingDate: string;
 }
 
 export interface Footer {

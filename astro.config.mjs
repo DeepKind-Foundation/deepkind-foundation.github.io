@@ -61,7 +61,16 @@ function paletteSavePlugin() {
 
 export default defineConfig({
   site: 'https://deepkind.org',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      serialize(item) {
+        if (item.url.includes('/blog/')) {
+          item.lastmod = new Date().toISOString();
+        }
+        return item;
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss(), paletteSavePlugin()],
     resolve: {

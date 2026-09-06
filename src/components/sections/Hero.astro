@@ -1,6 +1,12 @@
 ---
-import content from '@data/content';
+import defaultContent from '@data/content';
 import heroSvg from '@assets/svg/hero-illustration.svg?raw';
+
+type Props = {
+  content?: typeof defaultContent;
+};
+
+const { content = defaultContent } = Astro.props;
 const { title, subtitle, cta, secondaryCta } = content.hero;
 
 const splitIdx = title.indexOf('. ');
