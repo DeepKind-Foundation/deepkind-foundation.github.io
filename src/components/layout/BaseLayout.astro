@@ -95,7 +95,7 @@ function safeJsonLd(obj: unknown): string {
         "@type": "DonateAction",
         "target": "https://deepkind.org/wesprzyj"
       },
-      "sameAs": content.footer.connect.filter(l => !l.url.startsWith('mailto:') && l.url !== '#').map(l => l.url)
+      "sameAs": content.footer.org.sameAs || content.footer.connect.filter(l => !l.url.startsWith('mailto:') && l.url !== '#').map(l => l.url)
     })} />
 
     {schema && <script type="application/ld+json" set:html={safeJsonLd(schema)} />}
