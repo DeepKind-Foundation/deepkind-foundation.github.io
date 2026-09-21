@@ -255,7 +255,14 @@
       "krs": "0001193215",
       "street": "ul. Odolańska 3/15",
       "postalCode": "02-560",
-      "foundingDate": "2025-07-14"
+      "foundingDate": "2025-07-14",
+      "sameAs": [
+        "https://www.linkedin.com/company/deepkind",
+        "https://spis.ngo.pl/530112-fundacja-deepkind",
+        "https://wyszukiwarka-krs.ms.gov.pl/Default.aspx?SearchType=1&SearchText=0001193215",
+        "https://rejestr.io/0001193215",
+        "https://www.facebook.com/profile.php?id=61588361091771"
+      ]
     },
     "legal": [
       {
