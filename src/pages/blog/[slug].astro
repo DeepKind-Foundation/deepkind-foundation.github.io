@@ -32,6 +32,7 @@ const articleSchema = {
   headline: post.data.title,
   description: post.data.excerpt,
   datePublished: new Date(post.data.date).toISOString(),
+  dateModified: new Date(post.data.updated ?? post.data.date).toISOString(),
   inLanguage: 'pl',
   author: authorSchema,
   publisher: {
@@ -82,6 +83,12 @@ function formatDate(iso: string): string {
           {authorData && <span>{authorData.name}</span>}
           <span class="blog-post-hero__byline-sep">{authorData ? '·' : ''}</span>
           {formatDate(post.data.date)}
+          {post.data.updated && (
+            <>
+              <span class="blog-post-hero__byline-sep">·</span>
+              <span>Zaktualizowano {formatDate(post.data.updated)}</span>
+            </>
+          )}
         </p>
       </div>
     </header>

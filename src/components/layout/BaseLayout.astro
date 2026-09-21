@@ -31,6 +31,38 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://deepkind.org');
 const ogLocale = lang === 'en' ? 'en_US' : 'pl_PL';
 
+// BreadcrumbList — auto-derived from the URL path, no per-page wiring required.
+const navLinks = lang === 'en' ? contentEn.navigation.links : content.navigation.links;
+const blogLabel = navLinks.find(l => l.url === '/blog')?.name ?? 'Blog';
+const homeLabel = lang === 'en' ? 'Home' : 'Strona główna';
+const homeUrl = new URL(lang === 'en' ? '/en/' : '/', Astro.site ?? 'https://deepkind.org').href;
+const pathSegments = Astro.url.pathname.split('/').filter(seg => seg && seg !== 'en');
+const pageLabel = title.split(/\s[|—]\s/)[0];
+const breadcrumbItems: { '@type': 'ListItem'; position: number; name: string; item: string }[] = [
+  { '@type': 'ListItem', position: 1, name: homeLabel, item: homeUrl },
+];
+if (pathSegments[0] === 'blog' && pathSegments.length > 1) {
+  breadcrumbItems.push({
+    '@type': 'ListItem',
+    position: 2,
+    name: blogLabel,
+    item: new URL('/blog/', Astro.site ?? 'https://deepkind.org').href,
+  });
+}
+if (pathSegments.length > 0) {
+  breadcrumbItems.push({
+    '@type': 'ListItem',
+    position: breadcrumbItems.length + 1,
+    name: pageLabel,
+    item: canonicalURL.href,
+  });
+}
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbItems,
+};
+
 function safeJsonLd(obj: unknown): string {
   return JSON.stringify(obj)
     .replace(/</g, '\\u003c')
@@ -81,7 +113,6 @@ function safeJsonLd(obj: unknown): string {
       "url": "https://deepkind.org",
       "logo": "https://deepkind.org/assets/logo.png",
       "description": content.footer.description,
-      "email": content.footer.connect.find(l => l.url.startsWith('mailto:'))?.url.replace('mailto:', '') || '',
       "inLanguage": "pl",
       "areaServed": "PL",
       "taxID": content.footer.org.nip,
@@ -90,13 +121,30 @@ function safeJsonLd(obj: unknown): string {
         "propertyID": "KRS",
         "value": content.footer.org.krs
       },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": content.footer.org.street,
+        "addressLocality": "Warszawa",
+        "postalCode": content.footer.org.postalCode,
+        "addressCountry": "PL"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": content.footer.connect.find(l => l.url.startsWith('mailto:'))?.url.replace('mailto:', '') || '',
+        "contactType": "customer support",
+        "availableLanguage": ["Polish", "English"]
+      },
+      "knowsAbout": ["technologia i etyka", "edukacja technologiczna", "różnorodność neurologiczna", "wsparcie kobiet w technologii"],
       ...(content.footer.org.foundingDate && { "foundingDate": content.footer.org.foundingDate }),
       "potentialAction": {
         "@type": "DonateAction",
+        "name": "Wesprzyj fundację",
         "target": "https://deepkind.org/wesprzyj"
       },
       "sameAs": content.footer.org.sameAs || content.footer.connect.filter(l => !l.url.startsWith('mailto:') && l.url !== '#').map(l => l.url)
     })} />
+
+    {pathSegments.length > 0 && <script type="application/ld+json" set:html={safeJsonLd(breadcrumbSchema)} />}
 
     {schema && <script type="application/ld+json" set:html={safeJsonLd(schema)} />}
 

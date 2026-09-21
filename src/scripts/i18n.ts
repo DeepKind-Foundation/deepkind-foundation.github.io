@@ -59,7 +59,9 @@ function applyLang(lang: Lang) {
   });
 
   const btn = document.getElementById('lang-toggle');
-  if (btn) btn.setAttribute('aria-label', lang === 'pl' ? 'Switch to English' : 'Przełącz na polski');
+  // Label is announced in the language the user is ABOUT TO SWITCH TO, since a
+  // reader leaving Polish for English likely doesn't read Polish (and vice versa).
+  if (btn) btn.setAttribute('aria-label', lang === 'pl' ? 'PL / ENG — Switch to English' : 'PL / ENG — Przełącz na polski');
 }
 
 // Apply saved language on load

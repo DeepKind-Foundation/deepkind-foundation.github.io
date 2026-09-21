@@ -1,0 +1,120 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import content from '@data/content';
+
+const { org } = content.footer;
+const { about } = content;
+
+const registries = [
+  { name: 'Krajowy Rejestr Sądowy (wyszukiwarka MS)', url: `https://wyszukiwarka-krs.ms.gov.pl/Default.aspx?SearchType=1&SearchText=${org.krs}` },
+  { name: 'rejestr.io — pełny wypis KRS', url: `https://rejestr.io/${org.krs}` },
+  { name: 'spis.ngo.pl — profil organizacji', url: 'https://spis.ngo.pl/530112-fundacja-deepkind' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/company/deepkind' },
+  { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61588361091771' },
+];
+---
+
+<BaseLayout
+  title="O Fundacji DeepKind | DeepKind Foundation"
+  description="Fundacja DeepKind: misja, dane rejestrowe (KRS, NIP), siedziba i sposoby zweryfikowania organizacji w oficjalnych rejestrach."
+>
+
+  <section class="pc-hero">
+    <div class="pc-wrap">
+      <p class="pc-protocol">DEEPKIND // O FUNDACJI</p>
+      <h1 class="pc-title">O Fundacji DeepKind</h1>
+      <p class="pc-meta">Zarejestrowana w Polsce &nbsp;·&nbsp; KRS {org.krs}</p>
+    </div>
+  </section>
+
+  <section class="pc-body">
+    <div class="pc-wrap">
+      <div class="pc-content">
+
+        <section class="pc-section">
+          <h2 class="pc-h2">{about.title}</h2>
+          {about.paragraphs.map((p: string) => <p>{p}</p>)}
+          <blockquote class="pc-quote">{about.quote}</blockquote>
+        </section>
+
+        <section class="pc-section">
+          <h2 class="pc-h2">Dane rejestrowe</h2>
+          <p>Fundacja DeepKind działa jako osoba prawna zarejestrowana w Polsce, na podstawie ustawy z dnia 6 kwietnia 1984 r. o fundacjach oraz własnego statutu.</p>
+          <div class="pc-card">
+            <ul>
+              <li><strong>Pełna nazwa:</strong> {org.name}</li>
+              <li><strong>KRS:</strong> {org.krs}</li>
+              <li><strong>NIP:</strong> {org.nip}</li>
+              <li><strong>Data założenia:</strong> {org.foundingDate}</li>
+              <li><strong>Siedziba:</strong> {org.street}, {org.postalCode} Warszawa</li>
+              <li><strong>Organ nadzoru:</strong> Minister Rodziny, Pracy i Polityki Społecznej</li>
+            </ul>
+          </div>
+          <p>Pełna treść dokumentu założycielskiego, w tym cele statutowe i władze Fundacji, jest jawna i dostępna na stronie <a href="/statut">Statutu Fundacji DeepKind</a>.</p>
+        </section>
+
+        <section class="pc-section">
+          <h2 class="pc-h2">Zweryfikuj nas</h2>
+          <p>Dane Fundacji można zweryfikować niezależnie w oficjalnych i publicznych rejestrach:</p>
+          <div class="pc-card">
+            <ul>
+              {registries.map(r => (
+                <li><a href={r.url} target="_blank" rel="noopener noreferrer">{r.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section class="pc-section">
+          <h2 class="pc-h2">Kontakt</h2>
+          <p>W sprawach organizacyjnych, partnerskich lub medialnych: <a href="mailto:hello@deepkind.org">hello@deepkind.org</a>.</p>
+          <p>Chcesz się zaangażować? Zobacz, jak <a href="/dolacz">dołączyć jako wolontariusz/-ka</a> lub <a href="/wesprzyj">wesprzeć Fundację finansowo</a>.</p>
+        </section>
+
+      </div>
+
+      <div class="pc-back">
+        <a href="/" class="pc-back-link">← Wróć na stronę główną</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .pc-wrap { max-width: var(--width-max); margin-inline: auto; padding-inline: var(--pad-x); }
+
+  .pc-hero { background: var(--color-bg-dark); padding-block: clamp(5rem, 8vw, 8rem); border-bottom: 1px solid var(--white-08); }
+  .pc-protocol { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.14em; color: var(--color-violet); margin-bottom: 1rem; }
+  .pc-title { font-family: var(--font-display); font-size: var(--text-5xl); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; color: var(--on-dark-90); }
+  .pc-meta { margin-top: 1rem; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; color: var(--on-dark-40); }
+
+  .pc-body { background: var(--color-bg-base); padding-block: var(--section-y); }
+  .pc-content { max-width: 72ch; display: flex; flex-direction: column; gap: 3rem; }
+
+  .pc-section { display: flex; flex-direction: column; gap: 1rem; }
+  .pc-h2 { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700; letter-spacing: -0.02em; color: var(--color-text); }
+
+  .pc-section p, .pc-section li { font-size: var(--text-base); line-height: 1.78; color: var(--color-text-dim); }
+  .pc-section strong { color: var(--color-text); font-weight: 600; }
+  .pc-section a { color: var(--color-violet); text-decoration: none; border-bottom: 1px solid var(--ink-12); transition: border-color 0.15s; }
+  .pc-section a:hover { border-color: var(--color-violet); }
+  .pc-section ul { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .pc-section ul li::marker { color: var(--color-violet); }
+
+  .pc-quote {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--color-text);
+    border-left: 2px solid var(--color-violet);
+    padding-left: 1.25rem;
+    margin: 0.5rem 0;
+  }
+
+  .pc-card { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .pc-back { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--ink-08); }
+  .pc-back-link { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-dim); transition: color 0.15s; }
+  .pc-back-link:hover { color: var(--color-violet); }
+</style>
