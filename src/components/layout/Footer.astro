@@ -1,7 +1,6 @@
 ---
 import content from '@data/content';
 import iconLinkedin from '@assets/svg/icon-linkedin.svg?raw';
-import iconInstagram from '@assets/svg/icon-instagram.svg?raw';
 import iconFacebook from '@assets/svg/icon-facebook.svg?raw';
 
 const { description, tagline, org, legal, connect, copyright } = content.footer;
@@ -10,7 +9,6 @@ const socials = connect.filter(l => !l.url.startsWith('mailto:'));
 
 const socialIcons: Record<string, string> = {
   LinkedIn: iconLinkedin,
-  Instagram: iconInstagram,
   Facebook: iconFacebook,
 };
 ---
@@ -22,7 +20,7 @@ const socialIcons: Record<string, string> = {
 
       <!-- Brand -->
       <div class="footer__brand">
-        <img src="/assets/logo-light.svg" alt="DeepKind" class="footer__logo-img" />
+        <img src="/assets/logo-light.svg" alt="DeepKind" class="footer__logo-img" width="91" height="28" loading="lazy" />
         <p class="footer__tagline" data-i18n="footer.tagline">{tagline}</p>
         <p class="footer__desc">{description}</p>
       </div>
@@ -35,6 +33,7 @@ const socialIcons: Record<string, string> = {
           <li>{org.city}</li>
           <li>NIP: {org.nip}</li>
           <li>KRS: {org.krs}</li>
+          <li><a href="/o-nas" class="footer__link" data-i18n="footer.org.aboutLink">{org.aboutLink}</a></li>
         </ul>
       </div>
 

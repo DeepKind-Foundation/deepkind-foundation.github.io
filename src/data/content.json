@@ -256,6 +256,7 @@
       "street": "ul. Odolańska 3/15",
       "postalCode": "02-560",
       "foundingDate": "2025-07-14",
+      "aboutLink": "O Fundacji →",
       "sameAs": [
         "https://www.linkedin.com/company/deepkind",
         "https://spis.ngo.pl/530112-fundacja-deepkind",
@@ -296,12 +297,8 @@
         "url": "https://www.linkedin.com/company/deepkind"
       },
       {
-        "name": "Instagram",
-        "url": "#"
-      },
-      {
         "name": "Facebook",
-        "url": "#"
+        "url": "https://www.facebook.com/profile.php?id=61588361091771"
       }
     ],
     "copyright": "© 2026 DeepKind Foundation"

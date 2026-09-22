@@ -263,7 +263,8 @@
       "name": "DeepKind Foundation",
       "city": "Warsaw, Poland",
       "nip": "5214132486",
-      "krs": "0001193215"
+      "krs": "0001193215",
+      "aboutLink": "About the Foundation →"
     },
     "legal": [
       {
@@ -297,12 +298,8 @@
         "url": "https://www.linkedin.com/company/deepkind"
       },
       {
-        "name": "Instagram",
-        "url": "#"
-      },
-      {
         "name": "Facebook",
-        "url": "#"
+        "url": "https://www.facebook.com/profile.php?id=61588361091771"
       }
     ],
     "copyright": "© 2026 DeepKind Foundation"
