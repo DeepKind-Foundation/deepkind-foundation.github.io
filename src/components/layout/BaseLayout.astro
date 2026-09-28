@@ -31,6 +31,12 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://deepkind.org');
 const ogLocale = lang === 'en' ? 'en_US' : 'pl_PL';
 
+// Projects run under their own domain are declared as sub-organisations,
+// mirroring the parentOrganization link on the project side.
+const subOrganizations = content.projects.items
+  .filter(p => new URL(p.url, 'https://deepkind.org').hostname === 'mindsandmuscles.pl')
+  .map(p => ({ "@type": "Organization", "name": p.title, "url": p.url }));
+
 // BreadcrumbList — auto-derived from the URL path, no per-page wiring required.
 const navLinks = lang === 'en' ? contentEn.navigation.links : content.navigation.links;
 const blogLabel = navLinks.find(l => l.url === '/blog')?.name ?? 'Blog';
@@ -141,6 +147,7 @@ function safeJsonLd(obj: unknown): string {
         "name": "Wesprzyj fundację",
         "target": "https://deepkind.org/wesprzyj"
       },
+      ...(subOrganizations.length > 0 && { "subOrganization": subOrganizations }),
       "sameAs": content.footer.org.sameAs || content.footer.connect.filter(l => !l.url.startsWith('mailto:') && l.url !== '#').map(l => l.url)
     })} />
 
