@@ -3,7 +3,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import content from '@data/content';
 
 const { org } = content.footer;
-const { about } = content;
+const { about, projects } = content;
+const minds = projects.items.find((p: { url: string }) => new URL(p.url, 'https://deepkind.org').hostname === 'mindsandmuscles.pl');
 
 const registries = [
   { name: 'Krajowy Rejestr Sądowy (wyszukiwarka MS)', url: `https://wyszukiwarka-krs.ms.gov.pl/Default.aspx?SearchType=1&SearchText=${org.krs}` },
@@ -36,6 +37,13 @@ const registries = [
           {about.paragraphs.map((p: string) => <p>{p}</p>)}
           <blockquote class="pc-quote">{about.quote}</blockquote>
         </section>
+
+        {minds && (
+          <section class="pc-section">
+            <h2 class="pc-h2">Projekty Fundacji</h2>
+            <p>Fundacja prowadzi program <a href={minds.url}>{minds.title}</a>: równoległe zajęcia ruchowe dla dzieci i rodziców, na których każdy dostaje to, czego potrzebuje. Program ma własną stronę z opisem zajęć i wiedzą o ruchu i codziennej trosce. Pozostałe inicjatywy opisujemy na <a href="/#projects">stronie głównej</a>.</p>
+          </section>
+        )}
 
         <section class="pc-section">
           <h2 class="pc-h2">Dane rejestrowe</h2>
